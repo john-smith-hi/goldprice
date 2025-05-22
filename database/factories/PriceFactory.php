@@ -21,6 +21,7 @@ class PriceFactory extends Factory
             'price' => $this->faker->numberBetween(500000, 10000000),
             'type' => $this->faker->numberBetween(1, 10),
             'url' => $this->faker->url(),
+            'published_at' => $this->faker->optional()->dateTimeThisYear(),
         ];
     }
 }

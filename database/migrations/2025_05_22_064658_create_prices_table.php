@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('type');
             $table->string('url', 500);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

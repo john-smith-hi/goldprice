@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\UserHomeController;
 
 Route::redirect("/", "/home");
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [UserHomeController::class, 'index']);

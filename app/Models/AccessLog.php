@@ -21,4 +21,26 @@ class AccessLog extends Model
         'url',
         'accessed_at',
     ];
+
+    public static function saveRequest()
+    {
+        $request = request();
+        $exists = self::where('ip_address', $request->ip())
+            ->where('user_agent', $request->header('User-Agent'))
+            ->where('device', $request->header('Sec-CH-UA-Platform') ?? '')
+            ->where('created_at', '>=', now()->subMinutes(10))
+            ->exists();
+
+        if (!$exists) {
+            self::create([
+            'ip_address'   => $request->ip(),
+            'user_agent'   => $request->header('User-Agent'),
+            'device'       => $request->header('Sec-CH-UA-Platform') ?? '',
+            'resolution'   => $request->header('X-Resolution') ?? '',
+            'language'     => $request->header('Accept-Language'),
+            'url'          => $request->fullUrl(),
+            'accessed_at'  => now(),
+            ]);
+        }
+    }
 }

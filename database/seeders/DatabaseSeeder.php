@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         TypeGold::factory()->count(10)->create();
-        Price::factory()->count(1000)->create();
+        Price::factory()->count(10000)->create();
         Setting::factory()->count(10)->create();
         AccessLog::factory()->count(100)->create();
         AutoBot::factory()->count(10)->create();

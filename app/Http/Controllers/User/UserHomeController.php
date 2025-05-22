@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
-class HomeController
+use App\Models\AccessLog;
+
+class UserHomeController
 {
     function index() {
+        AccessLog::saveRequest();
         return view('user.home');
     }
 }
