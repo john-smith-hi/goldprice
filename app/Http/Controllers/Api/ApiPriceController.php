@@ -10,8 +10,8 @@ class ApiPriceController
     public function index()
     {
         $validator = Validator::make(request()->all(), [
-            'type'         => 'required|integer',
-            'time_filter'  => 'required|in:day,week,month,quarter,year,custom',
+            'type'         => 'nullable|integer',
+            'time_filter'  => 'required|in:lastest,day,week,month,quarter,year,custom',
             'from_date'    => 'nullable|date_format:d/m/Y',
             'to_date'      => 'nullable|date_format:d/m/Y',
         ]);
@@ -28,7 +28,7 @@ class ApiPriceController
         $from_date   = request('from_date');
         $to_date     = request('to_date');
 
-        $prices = (new Price())->getGoldPrice($type, $time_filter, $from_date, $to_date);
+        $prices = (new Price())->getGoldPrice($time_filter, $type, $from_date, $to_date);
 
         return response()->json([
             'success' => true,

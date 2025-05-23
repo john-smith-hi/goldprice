@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\AccessLog;
+use App\Models\Setting;
 
 class UserHomeController
 {
     function index() {
         AccessLog::saveRequest();
-        return view('user.home');
+        $MAIN_SJC_TYPE_GOLD_VN_ID = Setting::where('name','MAIN_SJC_TYPE_GOLD_VN_ID')->pluck('value')->first();
+        $MAIN_9999_TYPE_GOLD_VN_ID = Setting::where('name','MAIN_9999_TYPE_GOLD_VN_ID')->pluck('value')->first();
+        return view('user.home', [
+            'MAIN_SJC_TYPE_GOLD_VN_ID' => $MAIN_SJC_TYPE_GOLD_VN_ID,
+            'MAIN_9999_TYPE_GOLD_VN_ID' => $MAIN_9999_TYPE_GOLD_VN_ID,
+        ]);
     }
 }

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->integer('price');
+            $table->integer('price_in');
+            $table->integer('price_out');
             $table->integer('type');
             $table->string('url', 500);
             $table->timestamp('published_at')->nullable();

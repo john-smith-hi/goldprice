@@ -18,10 +18,15 @@ class PriceFactory extends Factory
     public function definition(): array
     {
         return [
-            'price' => $this->faker->numberBetween(500000, 10000000),
-            'type' => $this->faker->numberBetween(1, 10),
-            'url' => $this->faker->url(),
-            'published_at' => $this->faker->optional()->dateTimeThisYear(),
+            'price_in' => $this->faker->numberBetween(50000, 150000),
+            // Lấy giá trị price_out lớn hơn price_in từ 100-500
+            'price_out' => function (array $attributes) {
+                $priceIn = $attributes['price_in'];
+                return $priceIn + $this->faker->numberBetween(100, 500);
+            },
+            'type' => $this->faker->numberBetween(1, 20),
+            'url' => '',
+            'published_at' => $this->faker->dateTimeBetween('first day of January this year', 'now')->format('Y-m-d H:i:s'),
         ];
     }
 }

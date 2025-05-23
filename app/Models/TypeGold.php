@@ -12,8 +12,11 @@ class TypeGold extends Model
     protected $table = 'type_gold';
 
     protected $fillable = [
+        'companies_id',
         'name_vn',
         'name_en',
+        'note',
+        'type',
     ];
 
     public function prices()
