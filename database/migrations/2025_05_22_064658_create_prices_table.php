@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('price_in');
             $table->integer('price_out');
-            $table->bigInteger('type');
+            $table->unsignedBigInteger('type');
             $table->string('url', 500);
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
