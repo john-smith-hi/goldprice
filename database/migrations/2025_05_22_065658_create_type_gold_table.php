@@ -21,10 +21,6 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
-        Schema::table('prices', function (Blueprint $table) {
-            $table->foreign('type')->references('id')->on('type_gold')->onDelete('cascade');
-        });
     }
 
     /**
