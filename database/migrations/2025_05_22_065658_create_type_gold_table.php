@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name_vn')->nullable();
             $table->string('name_en')->nullable();
             $table->string('note')->nullable(); 
-            $table->bigInteger('type')->default(0); // 0/1 : trong nước/quốc tế
+            $table->integer('type')->default(0); // 0/1 : trong nước/quốc tế
             $table->timestamps();
             $table->softDeletes();
         });
