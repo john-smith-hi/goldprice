@@ -58,7 +58,10 @@
     <div class="row g-3">
       <div class="col-md-6">
         <div class="chart-box">
-          <h5 class="text-center mb-3">Giá Vàng Trong Nước (SJC - triệu / chỉ)</h5>
+          <div class="d-flex justify-content-between align-items-center mb-3 position-relative">
+            <h5 class="mb-0 position-absolute start-50 translate-middle-x w-100 text-center">Giá Vàng Trong Nước (SJC)</h5>
+            <h5 class="mb-0 text-end ms-auto" style="min-width: 120px;">VNĐ / chỉ</h5>
+          </div>
           <canvas id="chartVN"></canvas>
         </div>
       </div>
@@ -72,6 +75,9 @@
 
     <div class="timestamp" id="timestamp">Cập nhật lúc: <span id="published_at"></span></div>
     <script>
+      UpdateSJCLastest();
+      UpdateGold9999Lastest();
+      UpdateChartVn();
       function UpdateSJCLastest(){
         fetch('/api/gold_price?time_filter=lastest&type={{$MAIN_SJC_TYPE_GOLD_VN_ID}}')
           .then(res => res.json())
@@ -171,31 +177,6 @@
               });
           });
         }      
-
-      // new Chart(document.getElementById('chartEn'), {
-      //   type: 'line',
-      //   data: {
-      //     labels,
-      //     datasets: [{
-      //       label: 'Giá vàng quốc tế (USD/oz)',
-      //       data: worldData,
-      //       borderColor: '#007bff',
-      //       backgroundColor: 'rgba(0, 123, 255, 0.2)',
-      //       tension: 0.4,
-      //       fill: true
-      //     }]
-      //   },
-      //   options: {
-      //     plugins: { legend: { display: false } },
-      //     scales: {
-      //       y: {
-      //         ticks: {
-      //           callback: value => '$' + value
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
 
       // Xử lý logic bộ lọc
         const timeFilter = document.getElementById('timeFilter');

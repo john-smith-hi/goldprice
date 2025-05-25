@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
         Setting::create(['name' => 'MAIN_SJC_TYPE_GOLD_VN_ID', 'type_value' => 'integer', 'value' => 1, 'note' => 'Giá trị chính để hiển thị giá vàng SJC Việt Nam']);
         Setting::create(['name' => 'MAIN_9999_TYPE_GOLD_VN_ID', 'type_value' => 'integer', 'value' => 4, 'note' => 'Giá trị chính để hiển thị giá vàng 9999 Việt Nam']);
 
-        Price::factory()->count(30000)->create();
+        // Price::factory()->count(30000)->create();
         // Setting::factory()->count(10)->create();
         // AccessLog::factory()->count(100)->create();
         // AutoBot::factory()->count(10)->create();
