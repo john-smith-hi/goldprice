@@ -14,16 +14,13 @@ return new class extends Migration
         Schema::create('type_gold', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('companies_id');
+            $table->foreignId('companies_id')->constrained('companies')->onDelete('cascade');
             $table->string('name_vn')->nullable();
             $table->string('name_en')->nullable();
             $table->string('note')->nullable(); 
             $table->integer('type')->default(0); // 0/1 : trong nước/quốc tế
             $table->timestamps();
             $table->softDeletes();
-        });
-
-        Schema::table('prices', function (Blueprint $table) {
-            $table->foreign('type')->references('id')->on('type_gold')->onDelete('cascade');
         });
     }
 
