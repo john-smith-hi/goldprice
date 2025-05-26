@@ -48,8 +48,9 @@ class AutoCurrencyController
     }
 
     private function checkGotData($minute=10){
-        $lastCurrency = Currency::latest('created_at')->first();
-        return $lastCurrency && abs(now()->diffInMinutes($lastCurrency->created_at)) < ($minute+self::GUESS_WORK_DONE_MINUTE);
+        // $lastCurrency = Currency::latest('created_at')->first();
+        // return $lastCurrency && abs(now()->diffInMinutes($lastCurrency->created_at)) < ($minute+self::GUESS_WORK_DONE_MINUTE);
+        return false;
     }
 
     function autoGetDataCurrency(){
