@@ -55,6 +55,7 @@ class DatabaseSeeder extends Seeder
         TypeGold::create(['companies_id' => 4 , 'name_vn' => 'Vàng trắng Au750']);
 
         Setting::create(['name' => 'AUTO_UPDATE_GOLD_PRICE', 'type_value' => 'integer', 'value' => 1, 'note' => 'Tự động cập nhật giá vàng 0/1 : Tắt/Bật']);
+        Setting::create(['name' => 'AUTO_UPDATE_GOLD_CURRENCY', 'type_value' => 'integer', 'value' => 1, 'note' => 'Tự động cập nhật giá vàng 0/1 : Tắt/Bật']);
         Setting::create(['name' => 'MAIN_SJC_TYPE_GOLD_VN_ID', 'type_value' => 'integer', 'value' => 1, 'note' => 'Giá trị chính để hiển thị giá vàng SJC Việt Nam']);
         Setting::create(['name' => 'MAIN_9999_TYPE_GOLD_VN_ID', 'type_value' => 'integer', 'value' => 4, 'note' => 'Giá trị chính để hiển thị giá vàng 9999 Việt Nam']);
 

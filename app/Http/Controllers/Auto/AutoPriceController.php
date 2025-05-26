@@ -12,8 +12,7 @@ use App\Models\Setting;
 
 class AutoPriceController
 {
-    // const SERECT_KEY = 'r9%F{ZVg@oP7LwqMJY:<T4d~!Kxb=3N|1Ac$?msEu`v)tR2X';
-    const GET_EVERY_MINUTE = 10;
+    const GET_EVERY_MINUTE = 30;
     const LINK_DATA_NGOCTHAM = 'https://giavang.org/trong-nuoc/ngoc-tham/';
     const LINK_DATA_DOJI = 'https://giavang.org/trong-nuoc/doji/';
     const LINK_DATA_SJC = 'https://giavang.org/trong-nuoc/sjc/';
@@ -68,7 +67,7 @@ class AutoPriceController
     private function checkGotData($companies_id, $minute=10){
         $typeGoldId = TypeGold::where('companies_id', $companies_id)->pluck('id')->first();
         $lastPrice = Price::where('type', $typeGoldId)->latest('published_at')->first();
-        return $lastPrice && strtotime($lastPrice->published_at) >= (time() - $minute * 60);
+        return $lastPrice && now()->diffInMinutes($lastPrice->published_at) < $minute;
     }
 
     private function PriceInput($priceText, $multiple=1){

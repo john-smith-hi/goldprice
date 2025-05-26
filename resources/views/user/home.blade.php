@@ -32,7 +32,7 @@
       <form id="filterForm" class="row g-2 align-items-end">
         <div class="col-md-3">
           <label for="timeFilter" class="form-label mb-1">Lọc theo</label>
-          <select id="timeFilter" name="time_filter" class="form-select">
+          <select id="timeFilter" name="time_filter" class="form-select" onchange="UpdateChartVn();">
             <option value="day">Ngày</option>
             <option value="week">Tuần</option>
             <option value="month">Tháng</option>
@@ -67,7 +67,10 @@
       </div>
       <div class="col-md-6">
         <div class="chart-box">
-          <h5 class="text-center mb-3">Giá Vàng Thế Giới (USD/oz)</h5>
+          <div class="d-flex justify-content-between align-items-center mb-3 position-relative">
+            <h5 class="mb-0 position-absolute start-50 translate-middle-x w-100 text-center">Giá Vàng Thế Giới</h5>
+            <h5 class="mb-0 text-end ms-auto" style="min-width: 120px;">USD/oz</h5>
+          </div>
           <canvas id="chartEn"></canvas>
         </div>
       </div>
@@ -131,7 +134,6 @@
               if (json.success && json.data && json.data.length > 0) {
                 // Sắp xếp theo published_at tăng dần
                 sorted = json.data.slice().sort((a, b) => new Date(a.published_at) - new Date(b.published_at));
-              }
               // Tạo mảng label và data
                 let labels;
                 if (timeFilterValue === 'day') {
@@ -175,6 +177,7 @@
                   }
                 }
               });
+            }
           });
         }      
 
