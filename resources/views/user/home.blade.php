@@ -57,19 +57,19 @@
     <!-- Biểu đồ -->
     <div class="row g-3">
       <div class="col-md-6">
-        <div class="chart-box">
-          <div class="d-flex justify-content-between align-items-center mb-3 position-relative">
-            <h5 class="mb-0 position-absolute start-50 translate-middle-x w-100 text-center">Giá Vàng Trong Nước (SJC)</h5>
-            <h5 class="mb-0 text-end ms-auto" style="min-width: 120px;">VNĐ / chỉ</h5>
+          <div class="chart-box">
+            <div class="mb-3 position-relative text-center">
+            <h5 class="mb-1 position-static w-100 text-center">Giá Vàng Trong Nước (SJC)</h5>
+            <div class="text-muted" style="font-size: 0.95em;">VNĐ / chỉ</div>
           </div>
           <canvas id="chartVN"></canvas>
         </div>
       </div>
       <div class="col-md-6">
         <div class="chart-box">
-          <div class="d-flex justify-content-between align-items-center mb-3 position-relative">
-            <h5 class="mb-0 position-absolute start-50 translate-middle-x w-100 text-center">Giá Vàng Thế Giới</h5>
-            <h5 class="mb-0 text-end ms-auto" style="min-width: 120px;">USD/oz</h5>
+          <div class="mb-3 position-relative text-center">
+            <h5 class="mb-1 position-static w-100 text-center">Giá Vàng Thế Giới</h5>
+            <div class="text-muted" style="font-size: 0.95em;">VNĐ / chỉ</div>
           </div>
           <canvas id="chartEn"></canvas>
         </div>
