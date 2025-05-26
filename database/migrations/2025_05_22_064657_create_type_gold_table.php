@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('type_gold', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('companies_id')->constrained('companies')->onDelete('cascade');
-            $table->integer('companies_id');
+            $table->foreignId('companies_id')->constrained('companies')->onDelete('cascade');
             $table->string('name_vn')->nullable();
             $table->string('name_en')->nullable();
             $table->string('note')->nullable(); 
