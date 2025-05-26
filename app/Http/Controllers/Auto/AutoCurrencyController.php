@@ -9,6 +9,7 @@ use App\Models\Notification;
 class AutoCurrencyController
 {
     const GET_EVERY_MINUTE = 30;
+    const GUESS_WORK_DONE_MINUTE = 5;
     const LINK_DATA_CURRENCY = 'https://wise.com/rates/history+live?source=USD&target=VND&length=30&resolution=hourly&unit=day';
     const list_currency = 'USD, VND';
     public function  index(){
@@ -48,7 +49,7 @@ class AutoCurrencyController
 
     private function checkGotData($minute=10){
         $lastCurrency = Currency::latest('created_at')->first();
-        return $lastCurrency && abs(now()->diffInMinutes($lastCurrency->created_at)) < $minute;
+        return $lastCurrency && abs(now()->diffInMinutes($lastCurrency->created_at)) < ($minute+self::GUESS_WORK_DONE_MINUTE);
     }
 
     function autoGetDataCurrency(){
