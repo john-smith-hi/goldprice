@@ -13,6 +13,7 @@ class AutoCurrencyController
     const LINK_DATA_CURRENCY = 'https://wise.com/rates/history+live?source=USD&target=VND&length=30&resolution=hourly&unit=day';
     const list_currency = 'USD, VND';
     public function  index(){
+        if (request()->input('fkey') !== env('SERECT_KEY')) {abort(404);}
         $AUTO_UPDATE_GOLD_CURRENCY = Setting::where('name', 'AUTO_UPDATE_GOLD_CURRENCY')->pluck('value')->first();
         if($AUTO_UPDATE_GOLD_CURRENCY !== '1'){
             return response()->json([

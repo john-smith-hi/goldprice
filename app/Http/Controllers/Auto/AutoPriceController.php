@@ -22,7 +22,7 @@ class AutoPriceController
     const NUMBER_OF_TYPE_GOLD_SJC = 12;
 
     public function index(){
-        // if (request()->input('fkey') !== self::SERECT_KEY) {abort(404);}
+        if (request()->input('fkey') !== env('SERECT_KEY')) {abort(404);}
         $AUTO_UPDATE_GOLD_PRICE = Setting::where('name', 'AUTO_UPDATE_GOLD_PRICE')->pluck('value')->first();
         if($AUTO_UPDATE_GOLD_PRICE !== '1'){
             return response()->json([
