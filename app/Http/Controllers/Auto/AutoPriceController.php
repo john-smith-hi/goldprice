@@ -67,7 +67,7 @@ class AutoPriceController
     private function checkGotData($companies_id, $minute=10){
         $typeGoldId = TypeGold::where('companies_id', $companies_id)->pluck('id')->first();
         $lastPrice = Price::where('type', $typeGoldId)->latest('published_at')->first();
-        return $lastPrice && now()->diffInMinutes($lastPrice->published_at) < $minute;
+        return $lastPrice && abs(now()->diffInMinutes($lastPrice->published_at)) < $minute;
     }
 
     private function PriceInput($priceText, $multiple=1){
