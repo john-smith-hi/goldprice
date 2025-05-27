@@ -1,9 +1,3 @@
-<nav class="navbar navbar-expand-lg bg-gold mb-4">
-    <div class="container">
-      <a class="navbar-brand fw-bold text-dark" href="">{{ Str::ucfirst(env('WEBSITE_NAME')) }}</a>
-      <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#feedbackModal">Góp ý</button>
-    </div>
-</nav>
 <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

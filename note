@@ -1,3 +1,24 @@
 3.90.212.250
 mysql : root/qW3t+Z1H5gM9pL2fKt8V0g==
 ftp : ftpuser/LMN159753.
+
+1. /gia-vang-hom-nay → Trang chính
+→ Có bảng giá & biểu đồ
+
+2. /tin-tuc-gia-vang
+→ Tin tức phân tích, dự đoán, chính sách ảnh hưởng đến giá
+
+3. /so-sanh-gia-vang-sjc-doji-pnj
+→ Bảng so sánh từng thương hiệu
+
+4. /kien-thuc-ve-vang
+→ Kiểu bài “Vàng 9999 là gì?”, “Phân biệt vàng 18k và 24k”
+
+5. /mua-vang-o-dau
+→ Hướng dẫn chọn cửa hàng uy tín
+
+6. /faq
+→ Hỏi đáp thường gặp về vàng
+
+7. /gia-vang-the-gioi
+→ Kết nối API giá vàng quốc tế nếu có

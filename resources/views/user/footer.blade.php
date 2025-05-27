@@ -52,10 +52,6 @@
   }
 }
 </script>
-<script>
-  const MAIN_SJC_TYPE_GOLD_VN_ID = '{{$MAIN_SJC_TYPE_GOLD_VN_ID}}';
-  const MAIN_9999_TYPE_GOLD_VN_ID = '{{$MAIN_9999_TYPE_GOLD_VN_ID}}';
-</script>
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
