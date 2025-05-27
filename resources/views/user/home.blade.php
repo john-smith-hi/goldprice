@@ -35,7 +35,7 @@
     <div class="col-md-3">
       <label for="timeFilter" class="form-label mb-1">Lọc theo</label>
       <select id="timeFilter" name="time_filter" class="form-select" onchange="UpdateChartVn();">
-      <!-- <option value="day">Ngày</option> -->
+      <option value="day">Ngày</option>
       <option value="week">Tuần</option>
       <option value="month">Tháng</option>
       <option value="quarter">Quý</option>
