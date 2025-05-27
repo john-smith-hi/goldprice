@@ -18,7 +18,7 @@ class PriceFactory extends Factory
     public function definition(): array
     {
         return [
-            'price_in' => $this->faker->numberBetween(50000, 150000),
+            'price_in' => $this->faker->numberBetween(5000000, 9000000),
             // Lấy giá trị price_out lớn hơn price_in từ 100-500
             'price_out' => function (array $attributes) {
                 $priceIn = $attributes['price_in'];

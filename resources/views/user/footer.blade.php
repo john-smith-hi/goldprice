@@ -4,10 +4,10 @@
       <div class="row">
         <div class="col-md-4 mb-3">
           <h6 class="text-white">Sitemap</h6>
-          <a href="#">Trang chủ</a>
-          <a href="#">Giá vàng hôm nay</a>
-          <a href="#">Biểu đồ</a>
-          <a href="#">Liên hệ</a>
+          <a href="">Trang chủ</a>
+          <a href="">Giá vàng hôm nay</a>
+          <a href="">Biểu đồ</a>
+          <a href="">Liên hệ</a>
         </div>
         <div class="col-md-4 mb-3">
           <h6 class="text-white">Chính sách</h6>
@@ -25,6 +25,38 @@
       <div class="copy">© 2025 GiaVangMoi.com. Bản quyền đã được bảo hộ.</div>
     </div>
 </footer>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Giá vàng SJC hôm nay",
+  "description": "Cập nhật giá vàng SJC mới nhất hôm nay tại Việt Nam. Bảng giá vàng SJC, biểu đồ giá vàng, so sánh giá mua vào - bán ra, cập nhật liên tục.",
+  "image": "{{ asset('images/gold-price-og.jpg') }}",
+  "sku": "SJC-GOLD-1L",
+  "category": "Vàng miếng SJC",
+  "brand": {
+    "@type": "Brand",
+    "name": "SJC"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "VND",
+    "price": "78000000",
+    "availability": "https://schema.org/InStock",
+    "url": "{{ url()->current() }}"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "152"
+  }
+}
+</script>
+<script>
+  const MAIN_SJC_TYPE_GOLD_VN_ID = '{{$MAIN_SJC_TYPE_GOLD_VN_ID}}';
+  const MAIN_9999_TYPE_GOLD_VN_ID = '{{$MAIN_9999_TYPE_GOLD_VN_ID}}';
+</script>
+<script src="{{ asset('js/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-gold mb-4">
     <div class="container">
-      <a class="navbar-brand fw-bold text-dark" href="#">Giá Vàng Hôm Nay</a>
+      <a class="navbar-brand fw-bold text-dark" href="">{{ Str::ucfirst(env('WEBSITE_NAME')) }}</a>
       <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#feedbackModal">Góp ý</button>
     </div>
 </nav>
@@ -18,17 +18,3 @@
       </div>
     </div>
 </div>
-<script>
-  // Modal phản hồi
-  function submitFeedback() {
-    const text = document.getElementById('feedbackText').value.trim();
-    if (!text) {
-      alert('Vui lòng nhập nội dung góp ý.');
-      return;
-    }
-    alert('Cảm ơn bạn đã gửi phản hồi!');
-    document.getElementById('feedbackText').value = '';
-    const modal = bootstrap.Modal.getInstance(document.getElementById('feedbackModal'));
-    modal.hide();
-  }
-</script>

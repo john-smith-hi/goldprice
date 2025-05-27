@@ -1,231 +1,118 @@
 @extends('user.main')
 @section('content')
-    <!-- Bảng giá -->
-    <div class="table-responsive mb-4">
-      <table class="table table-bordered table-hover bg-white shadow-sm align-middle">
-        <thead class="table-warning">
-          <tr>
-            <th>Loại Vàng</th>
-            <th>Mua Vào</th>
-            <th>Bán Ra</th>
-            <th>Chênh lệch</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>SJC</td>
-            <td class="up" id="sjc_price_in">0</td>
-            <td class="up" id="sjc_price_out">0</td>
-            <td class="up" id="sjc_price_change">0</td>
-          </tr>
-          <tr>
-            <td>9999</td>
-            <td class="down" id="9999_price_in">0</td>
-            <td class="down" id="9999_price_out">0</td>
-            <td class="down" id="9999_price_change">0</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- Tiêu đề H1 -->
+  <h1 class="mb-4 text-center">Giá Vàng Hôm Nay Mới Nhất</h1>
+  <!-- Bảng giá -->
+  <div class="table-responsive mb-4">
+    <table class="table table-bordered table-hover bg-white shadow-sm align-middle">
+    <thead class="table-warning">
+      <tr>
+      <th>Loại Vàng</th>
+      <th>Mua Vào</th>
+      <th>Bán Ra</th>
+      <th>Chênh lệch</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td>SJC</td>
+      <td class="up" id="sjc_price_in">0</td>
+      <td class="up" id="sjc_price_out">0</td>
+      <td class="up" id="sjc_price_change">0</td>
+      </tr>
+      <tr>
+      <td>9999</td>
+      <td class="down" id="9999_price_in">0</td>
+      <td class="down" id="9999_price_out">0</td>
+      <td class="down" id="9999_price_change">0</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <!-- Bộ lọc biểu đồ -->
+  <div class="chart-box mb-3">
+    <form id="filterForm" class="row g-2 align-items-end">
+    <div class="col-md-3">
+      <label for="timeFilter" class="form-label mb-1">Lọc theo</label>
+      <select id="timeFilter" name="time_filter" class="form-select" onchange="UpdateChartVn();">
+      <!-- <option value="day">Ngày</option> -->
+      <option value="week">Tuần</option>
+      <option value="month">Tháng</option>
+      <option value="quarter">Quý</option>
+      <option value="year">Năm</option>
+      <option value="custom">Tùy chọn</option>
+      </select>
     </div>
-    <!-- Bộ lọc biểu đồ -->
-    <div class="chart-box mb-3">
-      <form id="filterForm" class="row g-2 align-items-end">
-        <div class="col-md-3">
-          <label for="timeFilter" class="form-label mb-1">Lọc theo</label>
-          <select id="timeFilter" name="time_filter" class="form-select" onchange="UpdateChartVn();">
-            <option value="day">Ngày</option>
-            <option value="week">Tuần</option>
-            <option value="month">Tháng</option>
-            <option value="quarter">Quý</option>
-            <option value="year">Năm</option>
-            <option value="custom">Tùy chọn</option>
-          </select>
-        </div>
-        <div class="col-md-3">
-          <label for="fromDate" class="form-label mb-1">Từ ngày</label>
-          <input type="text" id="fromDate" name="from_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10" disabled>
-        </div>
-        <div class="col-md-3">
-          <label for="toDate" class="form-label mb-1">Đến ngày</label>
-          <input type="text" id="toDate" name="to_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10" disabled>
-        </div>
-        <div class="col-md-3">
-          <button type="submit" class="btn btn-primary w-100">Tìm kiếm</button>
-        </div>
-      </form>
+    <div class="col-md-3">
+      <label for="fromDate" class="form-label mb-1">Từ ngày</label>
+      <input type="text" id="fromDate" name="from_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10" disabled>
     </div>
-    <!-- Biểu đồ -->
-    <div class="row g-3">
-      <div class="col-md-6">
-          <div class="chart-box">
-            <div class="mb-3 position-relative text-center">
-            <h5 class="mb-1 position-static w-100 text-center">Giá Vàng Trong Nước (SJC)</h5>
-            <div class="text-muted" style="font-size: 0.95em;">VNĐ / chỉ</div>
-          </div>
-          <canvas id="chartVN"></canvas>
-        </div>
+    <div class="col-md-3">
+      <label for="toDate" class="form-label mb-1">Đến ngày</label>
+      <input type="text" id="toDate" name="to_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10" disabled>
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-primary w-100">Tìm kiếm</button>
+    </div>
+    </form>
+  </div>
+  <!-- Biểu đồ -->
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="chart-box">
+      <div class="mb-3 position-relative text-center">
+      <h5 class="mb-1 position-static w-100 text-center">Giá Vàng Trong Nước (SJC)</h5>
+      <div class="text-muted small">VNĐ / chỉ</div>
       </div>
-      <div class="col-md-6">
-        <div class="chart-box">
-          <div class="mb-3 position-relative text-center">
-            <h5 class="mb-1 position-static w-100 text-center">Giá Vàng Thế Giới</h5>
-            <div class="text-muted" style="font-size: 0.95em;">VNĐ / chỉ</div>
-          </div>
-          <canvas id="chartEn"></canvas>
-        </div>
-      </div>
+      <canvas id="chartVN"></canvas>
     </div>
+    </div>
+    <div class="col-md-6">
+    <div class="chart-box">
+      <div class="mb-3 position-relative text-center">
+      <h5 class="mb-1 position-static w-100 text-center">Giá Vàng Thế Giới</h5>
+      <div class="text-muted small">VNĐ / chỉ</div>
+      </div>
+      <canvas id="chartEn"></canvas>
+    </div>
+    </div>
+  </div>
 
-    <div class="timestamp" id="timestamp">Cập nhật lúc: <span id="published_at"></span></div>
-    <script>
-      UpdateSJCLastest();
-      UpdateGold9999Lastest();
-      UpdateChartVn();
-      function UpdateSJCLastest(){
-        fetch('/api/gold_price?time_filter=lastest&type={{$MAIN_SJC_TYPE_GOLD_VN_ID}}')
-          .then(res => res.json())
-          .then(json => {
-            if (json.success && json.data && json.data.length > 0) {
-              const sjc = json.data.find(item => item.type == '{{$MAIN_SJC_TYPE_GOLD_VN_ID}}');
-              if (sjc) {
-                const priceIn = sjc.price_in;
-                const priceOut = sjc.price_out;
-                document.getElementById('sjc_price_in').innerText = priceIn.toLocaleString('vi-VN');
-                document.getElementById('sjc_price_out').innerText = priceOut.toLocaleString('vi-VN');
-                // Tính chênh lệch và cập nhật vào sjc_price_change
-                const priceChange = priceOut - priceIn;
-                document.getElementById('sjc_price_change').innerText = priceChange.toLocaleString('vi-VN');
-                  // Cập nhật thời gian published_at
-                  if (sjc.published_at) {document.getElementById('published_at').innerText = sjc.published_at;}
-              }
-            }
-          });
-      }
-
-      // Cập nhật giá vàng gold_999 lastest
-      function UpdateGold9999Lastest(){
-        fetch('/api/gold_price?time_filter=lastest&type={{$MAIN_9999_TYPE_GOLD_VN_ID}}')
-        .then(res => res.json())
-        .then(json => {
-          if (json.success && json.data && json.data.length > 0) {
-            const gold_999 = json.data.find(item => item.type == '{{$MAIN_9999_TYPE_GOLD_VN_ID}}');
-            if (gold_999) {
-              const priceIn = gold_999.price_in;
-              const priceOut = gold_999.price_out;
-              document.getElementById('9999_price_in').innerText = priceIn.toLocaleString('vi-VN');
-              document.getElementById('9999_price_out').innerText = priceOut.toLocaleString('vi-VN');
-              // Tính chênh lệch và cập nhật vào gold_999_price_change
-              const priceChange = priceOut - priceIn;
-              document.getElementById('9999_price_change').innerText = priceChange.toLocaleString('vi-VN');
-            }
-          }
-        });
-      }
-
-      // Cập nhật biểu đồ
-        function UpdateChartVn(){
-          let timeFilterValue = document.getElementById("timeFilter").value;
-          let fromDateValue = document.getElementById("fromDate").value;
-          let toDate = document.getElementById("toDate").value;
-          fetch('/api/gold_price?time_filter='+timeFilterValue+'&type={{$MAIN_SJC_TYPE_GOLD_VN_ID}}&from_date='+fromDateValue+'&to_date='+toDate)
-            .then(res => res.json())
-            .then(json => {
-              let sorted = [];
-              if (json.success && json.data && json.data.length > 0) {
-                // Sắp xếp theo published_at tăng dần
-                sorted = json.data.slice().sort((a, b) => new Date(a.published_at) - new Date(b.published_at));
-              // Tạo mảng label và data
-                let labels;
-                if (timeFilterValue === 'day') {
-                labels = sorted.map(item => {
-                  const d = new Date(item.published_at);
-                  return d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                });
-                } else {
-                labels = sorted.map(item => {
-                  const d = new Date(item.published_at);
-                  return d.getDate().toString().padStart(2, '0') + '/' +
-                     (d.getMonth() + 1).toString().padStart(2, '0') + '/' +
-                     d.getFullYear();
-                });
-                }
-              const sjcData = sorted.map(item => item.price_out);
-
-              // Xóa chart cũ nếu có
-              if(window.chartVNInstance) window.chartVNInstance.destroy();
-              window.chartVNInstance = new Chart(document.getElementById('chartVN'), {
-                type: 'line',
-                data: {
-                  labels,
-                  datasets: [{
-                    label: 'Giá SJC (VNĐ)',
-                    data: sjcData,
-                    borderColor: 'gold',
-                    backgroundColor: 'rgba(255, 215, 0, 0.2)',
-                    tension: 0.4,
-                    fill: true
-                  }]
-                },
-                options: {
-                  plugins: { legend: { display: false } },
-                  scales: {
-                    y: {
-                      ticks: {
-                        callback: value => value.toLocaleString('vi-VN')
-                      }
-                    }
-                  }
-                }
-              });
-            }
-          });
-        }      
-
-      // Xử lý logic bộ lọc
-        const timeFilter = document.getElementById('timeFilter');
-        const fromDate = document.getElementById('fromDate');
-        const toDate = document.getElementById('toDate');
-
-        function setDateInputState() {
-          if (timeFilter.value === 'custom') {
-            fromDate.disabled = false;
-            toDate.disabled = false;
-          } else {
-            fromDate.value = '';
-            toDate.value = '';
-            fromDate.disabled = true;
-            toDate.disabled = true;
-          }
-        }
-        timeFilter.addEventListener('change', setDateInputState);
-
-        [fromDate, toDate].forEach(input => {
-          input.addEventListener('input', function() {
-            let v = this.value.replace(/[^0-9]/g, '');
-            if (v.length > 2 && v.length <= 4) v = v.slice(0,2) + '/' + v.slice(2);
-            else if (v.length > 4) v = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4,8);
-            this.value = v;
-            if (fromDate.value.length === 10 && toDate.value.length === 10) {
-              timeFilter.value = 'custom';
-              setDateInputState();
-            }
-          });
-        });
-        fromDate.addEventListener('input', function() {
-          if (fromDate.value.length === 10 && !toDate.value) {
-            timeFilter.value = 'custom';
-            setDateInputState();
-          }
-        });
-        document.getElementById('filterForm').addEventListener('submit', function(e) {
-          e.preventDefault();
-          // Lấy giá trị filter
-          const filter = timeFilter.value;
-          const from = fromDate.value;
-          const to = toDate.value;
-          // Gọi lại API và cập nhật biểu đồ (bạn cần bổ sung hàm fetch và cập nhật dữ liệu biểu đồ ở đây)
-          // fetch(`/api/gold_price?time_filter=${filter}&from_date=${from}&to_date=${to}&type=...`)
-          //   .then(...)
-        });
-    </script>
+  <div class="timestamp" id="timestamp">Cập nhật lúc: <span id="published_at"></span></div>
+  <div class="seo-content mt-5">
+    <h2>Giới thiệu về {{ Str::ucfirst(env('WEBSITE_NAME')) }} - Trang web cập nhật giá vàng uy tín, nhanh chóng và chính xác</h2>
+    <p>
+    {{ Str::ucfirst(env('WEBSITE_NAME')) }} là trang web chuyên cung cấp giá vàng hôm nay mới nhất, cập nhật liên tục từng phút từ các nguồn uy tín trên thị trường Việt Nam. Chúng tôi mang đến cho người dùng thông tin giá vàng SJC, giá vàng 9999, giá vàng thế giới và nhiều loại vàng khác một cách nhanh chóng, chính xác và hoàn toàn miễn phí.
+    </p>
+    <h3>Tại sao nên chọn {{ Str::ucfirst(env('WEBSITE_NAME')) }} để tra cứu giá vàng?</h3>
+    <ul>
+    <li><strong>Cập nhật giá vàng liên tục:</strong> Giá vàng được cập nhật tự động, đảm bảo người dùng luôn nắm bắt được giá vàng mới nhất từng thời điểm trong ngày.</li>
+    <li>Đa dạng loại vàng: Trang web cung cấp thông tin về giá vàng SJC, giá vàng 24K, giá vàng 18K, giá vàng PNJ, giá vàng DOJI và nhiều thương hiệu uy tín khác.</li>
+    <li>Biểu đồ giá vàng trực quan: Người dùng có thể xem biểu đồ giá vàng theo ngày, tuần, tháng, quý hoặc năm để phân tích xu hướng biến động giá vàng.</li>
+    <li>So sánh giá vàng mua vào - bán ra: Bảng giá vàng hiển thị rõ ràng mức giá mua vào, bán ra và chênh lệch, giúp người dùng dễ dàng đưa ra quyết định đầu tư hoặc mua bán vàng.</li>
+    <li>Giao diện thân thiện, dễ sử dụng: {{ Str::ucfirst(env('WEBSITE_NAME')) }} thiết kế tối ưu cho cả máy tính và điện thoại, giúp bạn tra cứu giá vàng mọi lúc, mọi nơi.</li>
+    </ul>
+    <h3>{{ Str::ucfirst(env('WEBSITE_NAME')) }} phù hợp với ai?</h3>
+    <p>
+    Trang web {{ Str::ucfirst(env('WEBSITE_NAME')) }} là công cụ hữu ích cho mọi đối tượng quan tâm đến thị trường vàng như nhà đầu tư, người kinh doanh vàng bạc đá quý, người dân có nhu cầu mua bán vàng tích trữ, hoặc bất kỳ ai muốn cập nhật giá vàng hôm nay một cách nhanh chóng và chính xác.
+    </p>
+    <h3>Lợi ích khi sử dụng {{ Str::ucfirst(env('WEBSITE_NAME')) }}</h3>
+    <ul>
+    <li>Tiết kiệm thời gian tra cứu giá vàng tại các cửa hàng hoặc trang web khác.</li>
+    <li>Thông tin giá vàng SJC, giá vàng 9999 và các loại vàng khác luôn được cập nhật mới nhất.</li>
+    <li>Phân tích xu hướng giá vàng dễ dàng nhờ biểu đồ giá vàng trực quan.</li>
+    <li>Hỗ trợ quyết định đầu tư, mua bán vàng hiệu quả hơn nhờ dữ liệu chính xác.</li>
+    </ul>
+    <h3>Cam kết của {{ Str::ucfirst(env('WEBSITE_NAME')) }}</h3>
+    <p>
+    Chúng tôi cam kết mang đến cho người dùng thông tin giá vàng hôm nay chính xác, minh bạch và khách quan nhất. Mọi dữ liệu trên {{ Str::ucfirst(env('WEBSITE_NAME')) }} đều được tổng hợp từ các nguồn uy tín như SJC, DOJI, PNJ, Bảo Tín Minh Châu và các ngân hàng lớn. Đội ngũ kỹ thuật của chúng tôi luôn nỗ lực cải tiến hệ thống để đảm bảo tốc độ cập nhật nhanh nhất và trải nghiệm người dùng tốt nhất.
+    </p>
+    <h3>Liên hệ với {{ Str::ucfirst(env('WEBSITE_NAME')) }}</h3>
+    <p>
+    Nếu bạn có bất kỳ thắc mắc, góp ý hoặc cần hỗ trợ về giá vàng hoặc các tính năng của trang web, vui lòng liên hệ với chúng tôi qua email: <a href="mailto:lmn147852369@gmail.com">lmn147852369@gmail.com</a>. {{ Str::ucfirst(env('WEBSITE_NAME')) }} luôn lắng nghe và sẵn sàng hỗ trợ bạn!
+    </p>
+    <p>
+    <strong>{{ Str::ucfirst(env('WEBSITE_NAME')) }}</strong> - Nơi cập nhật giá vàng hôm nay nhanh nhất, chính xác nhất tại Việt Nam!
+    </p>
+  </div>
 @endsection('content')

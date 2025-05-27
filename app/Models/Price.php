@@ -44,14 +44,14 @@ class Price extends Model
                 $query->whereDate('published_at', now()->toDateString());
                 break;
             case 'week':
-                $take = 12;
+                $take = 14;
                 $query->whereBetween('published_at', [
                     now()->startOfWeek()->startOfDay(),
                     now()->endOfWeek()->endOfDay()
                 ]);
                 break;
             case 'month':
-                $take = 12;
+                $take = 14;
                 $query->whereBetween('published_at', [
                     now()->startOfMonth()->startOfDay(),
                     now()->endOfMonth()->endOfDay()
