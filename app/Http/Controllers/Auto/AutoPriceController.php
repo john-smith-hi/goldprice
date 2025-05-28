@@ -17,6 +17,7 @@ class AutoPriceController
     const LINK_DATA_NGOCTHAM = 'https://giavang.org/trong-nuoc/ngoc-tham/';
     const LINK_DATA_DOJI = 'https://giavang.org/trong-nuoc/doji/';
     const LINK_DATA_SJC = 'https://giavang.org/trong-nuoc/sjc/';
+    const LINK_DATA_THEGIOI = 'https://giavang.org/the-gioi/';
     const NUMBER_OF_TYPE_GOLD_NGOCTHAM = 5;
     const NUMBER_OF_TYPE_GOLD_DOJI = 6;
     const NUMBER_OF_TYPE_GOLD_SJC = 12;
@@ -34,6 +35,7 @@ class AutoPriceController
             $this->autoGetDataNgocTham();
             $this->autoGetDataDoji();
             $this->autoGetDataSJC();
+            $this->autoGetDataTheGioi();
             return response()->json([
                 'success' => true,
             ]);
@@ -247,5 +249,9 @@ class AutoPriceController
                 }
             }
         }
+    }
+
+    private function autoGetDataTheGioi(){
+        
     }
 }
