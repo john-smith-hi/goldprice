@@ -17,13 +17,12 @@ class CheckFKey
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $apiKey = $request->input('fkey');
+        $fkey = $request->input('fkey');
+        if (!$fkey) {abort(404);}
         $secretKey = env('SECRET_KEY');
-
-        if (!$apiKey || $apiKey !== $secretKey) {
+        if ($fkey !== $secretKey) {
             abort(404);
         }
-
         return $next($request);
     }
 } 
