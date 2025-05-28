@@ -1,33 +1,59 @@
 @extends('user.main')
 @section('content')
   <!-- Tiêu đề H1 -->
-  <h1 class="mb-4 text-center">Giá Vàng Hôm Nay Mới Nhất</h1>
+  <h1 class="mb-4 text-center">Giá Vàng Mới Nhất Hôm Nay</h1>
   <!-- Bảng giá -->
-  <div class="table-responsive mb-4">
-    <table class="table table-bordered table-hover bg-white shadow-sm align-middle">
-    <thead class="table-warning">
-      <tr>
-      <th>Loại Vàng</th>
-      <th>Mua Vào</th>
-      <th>Bán Ra</th>
-      <th>Chênh lệch</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-      <td>SJC</td>
-      <td class="up" id="sjc_price_in">0</td>
-      <td class="up" id="sjc_price_out">0</td>
-      <td class="up" id="sjc_price_change">0</td>
-      </tr>
-      <tr>
-      <td>9999</td>
-      <td class="down" id="9999_price_in">0</td>
-      <td class="down" id="9999_price_out">0</td>
-      <td class="down" id="9999_price_change">0</td>
-      </tr>
-    </tbody>
-    </table>
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-5 mb-3">
+      <div class="card text-center border-warning shadow-lg">
+        <div class="card-header bg-warning text-dark fw-bold fs-5">
+          Giá Vàng SJC
+          <span class="small text-muted" style="font-size: 0.85em;">&nbsp;nghìn đồng/chỉ</span>
+        </div>
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-6 text-muted">Mua vào</div>
+            <div class="col-6 text-muted">Bán ra</div>
+          </div>
+          <div class="row align-items-center mb-2">
+            <div class="col-6">
+              <span id="sjc_price_in" class="display-5 fw-bold text-success">0</span>
+            </div>
+            <div class="col-6">
+              <span id="sjc_price_out" class="display-5 fw-bold text-danger">0</span>
+            </div>
+          </div>
+          <div class="mt-2">
+            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="sjc_price_change">0</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 mb-3">
+      <div class="card text-center border-info shadow-lg">
+        <div class="card-header bg-warning text-dark fw-bold fs-5">
+          Giá Vàng 999
+          <span class="small text-muted" style="font-size: 0.85em;">&nbsp;nghìn đồng/chỉ</span>
+        </div>
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-6 text-muted">Mua vào</div>
+            <div class="col-6 text-muted">Bán ra</div>
+          </div>
+          <div class="row align-items-center mb-2">
+            <div class="col-6">
+              <span id="9999_price_in" class="display-5 fw-bold text-success">0</span>
+            </div>
+            <div class="col-6">
+              <span id="9999_price_out" class="display-5 fw-bold text-danger">0</span>
+            </div>
+          </div>
+          <div class="mt-2">
+            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="9999_price_change">0</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Bộ lọc biểu đồ -->
   <div class="chart-box mb-3">
@@ -163,10 +189,10 @@
             if (sjc) {
             const priceIn = sjc.price_in;
             const priceOut = sjc.price_out;
-            document.getElementById('sjc_price_in').innerText = priceIn.toLocaleString('vi-VN');
-            document.getElementById('sjc_price_out').innerText = priceOut.toLocaleString('vi-VN');
+            document.getElementById('sjc_price_in').innerText = Math.floor(priceIn / 1000).toLocaleString('vi-VN');
+            document.getElementById('sjc_price_out').innerText = Math.floor(priceOut / 1000).toLocaleString('vi-VN');
             // Tính chênh lệch và cập nhật vào sjc_price_change
-            const priceChange = priceOut - priceIn;
+            const priceChange = Math.floor((priceOut - priceIn) / 1000).toLocaleString('vi-VN');
             document.getElementById('sjc_price_change').innerText = priceChange.toLocaleString('vi-VN');
                 // Cập nhật thời gian published_at
                 if (sjc.published_at) {document.getElementById('published_at').innerText = sjc.published_at;}
@@ -185,10 +211,10 @@
             if (gold_999) {
                 const priceIn = gold_999.price_in;
                 const priceOut = gold_999.price_out;
-                document.getElementById('9999_price_in').innerText = priceIn.toLocaleString('vi-VN');
-                document.getElementById('9999_price_out').innerText = priceOut.toLocaleString('vi-VN');
+                document.getElementById('9999_price_in').innerText = Math.floor(priceIn / 1000).toLocaleString('vi-VN');
+                document.getElementById('9999_price_out').innerText = Math.floor(priceOut / 1000).toLocaleString('vi-VN');
                 // Tính chênh lệch và cập nhật vào gold_999_price_change
-                const priceChange = priceOut - priceIn;
+                const priceChange = Math.floor((priceOut - priceIn) / 1000).toLocaleString('vi-VN');
                 document.getElementById('9999_price_change').innerText = priceChange.toLocaleString('vi-VN');
             }
             }
