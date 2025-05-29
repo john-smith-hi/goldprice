@@ -20,7 +20,7 @@ class CheckFKey
         $fkey = $request->session()->get('fkey') ?? $request->input('fkey');
         if (!$fkey) {abort(404);}
         $secretKey = env('SECRET_KEY');
-        echo $fkey."<br>".$secretKey;
+        echo $secretKey;
         if ($fkey != $secretKey) {
             abort(403);
         }
