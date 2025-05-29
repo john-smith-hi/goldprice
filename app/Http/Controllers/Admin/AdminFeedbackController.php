@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class AdminFeedbackController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('check.fkey');
-    }
-
     public function index()
     {
         $feedbacks = Feedback::withTrashed()
@@ -22,15 +16,20 @@ class AdminFeedbackController extends Controller
         return view('admin.feedback', compact('feedbacks'));
     }
 
-    public function destroy(Feedback $feedback)
+    public function destroy($id)
     {
         try {
+            $feedback = Feedback::findOrFail($id);
             $feedback->delete();
-            return redirect()->route('admin.feedback')
-                ->with('success', 'Đã xóa phản hồi thành công');
+            return response()->json([
+                'success' => true,
+                'message' => 'Đã xóa phản hồi thành công'
+            ]);
         } catch (\Exception $e) {
-            return redirect()->route('admin.feedback')
-                ->with('error', 'Có lỗi xảy ra khi xóa phản hồi');
+            return response()->json([
+                'success' => false,
+                'message' => 'Có lỗi xảy ra khi xóa phản hồi'
+            ], 500);
         }
     }
 } 

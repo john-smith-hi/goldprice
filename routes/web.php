@@ -22,8 +22,6 @@ Route::get('/refresh-captcha', [FeedbackController::class, 'refreshCaptcha']);
 Route::middleware([CheckFKey::class])->group(function () {
     Route::get('/auto_price', [AutoPriceController::class, 'index']);
     Route::get('/auto_currency', [AutoCurrencyController::class, 'index']);
-    Route::get('/control_database', [AdminDatabaseController::class, 'index']);
-    Route::post('/control_database/execute-query', [AdminDatabaseController::class, 'executeQuery']);
 });
 
 // Admin routes
@@ -32,6 +30,8 @@ Route::middleware([CheckFKey::class])->prefix('admin')->name('admin.')->group(fu
         return view('admin.dashboard');
     })->name('dashboard');
 
+    Route::get('/database', [AdminDatabaseController::class, 'index']);
+    Route::post('/database/execute-query', [AdminDatabaseController::class, 'executeQuery']);
     Route::get('/feedback', [AdminFeedbackController::class, 'index'])->name('feedback');
-    Route::delete('/feedback/{feedback}', [AdminFeedbackController::class, 'destroy'])->name('feedback.destroy');
+    Route::delete('/feedback/delete/{feedback}', [AdminFeedbackController::class, 'destroy'])->name('feedback.destroy');
 });
