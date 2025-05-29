@@ -6,10 +6,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserHomeController;
 use App\Http\Controllers\User\UserFAQController;
 use App\Http\Controllers\Admin\AdminDatabaseController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Middleware\CheckFKey;
 
 Route::get('/', [UserHomeController::class, 'index']);
 Route::get('/faq', [UserFAQController::class, 'index']);
+Route::post('/feedback', [FeedbackController::class, 'store']);
+Route::get('/refresh-captcha', [FeedbackController::class, 'refreshCaptcha']);
 
 Route::middleware([CheckFKey::class])->group(function () {
     Route::get('/auto_price', [AutoPriceController::class, 'index']);
