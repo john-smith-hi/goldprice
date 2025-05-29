@@ -17,12 +17,16 @@ class CheckFKey
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $fkey = $request->input('fkey');
+        $fkey = $request->session()->get('fkey') ?? $request->input('fkey');
         if (!$fkey) {abort(404);}
         $secretKey = env('SECRET_KEY');
         if ($fkey !== $secretKey) {
             abort(404);
         }
+
+        // Store fkey in session before proceeding
+        $request->session()->put('fkey', $fkey);
+        
         return $next($request);
     }
 } 
