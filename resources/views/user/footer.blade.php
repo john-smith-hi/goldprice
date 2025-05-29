@@ -22,7 +22,7 @@
           <a href="#">Góp ý</a>
         </div>
       </div>
-      <div class="copy">© 2025 GiaVangMoi.com. Bản quyền đã được bảo hộ.</div>
+      <div class="copy">© 2025 {{config('services.website_name')}} Bản quyền đã được bảo hộ.</div>
     </div>
 </footer>
 <script type="application/ld+json">
