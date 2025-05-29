@@ -21,7 +21,7 @@ class CheckFKey
         if (!$fkey) {abort(404);}
         $secretKey = env('SECRET_KEY');
         if ($fkey !== $secretKey) {
-            abort(404);
+            abort(403);
         }
 
         // Store fkey in session before proceeding
