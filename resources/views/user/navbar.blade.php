@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-gold mb-4">
     <div class="container">
       <a class="navbar-brand fw-bold text-dark" href="/">
-        <img src="{{ asset('images/logo.png') }}" alt="{{ env('WEBSITE_NAME') }}" style="height: 40px; width: auto;">
+        <img src="{{ asset('images/logo.png') }}" alt="{{ config('services.website_name') }}" style="height: 40px; width: auto;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

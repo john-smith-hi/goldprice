@@ -96,39 +96,39 @@
 
   <div class="timestamp" id="timestamp">Cập nhật lúc: <span id="published_at"></span></div>
   <div class="seo-content mt-5">
-    <h2>Giới thiệu về {{ (env('WEBSITE_NAME')) }} - Trang web cập nhật giá vàng uy tín, nhanh chóng và chính xác</h2>
+    <h2>Giới thiệu về {{ (config('services.website_name')) }} - Trang web cập nhật giá vàng uy tín, nhanh chóng và chính xác</h2>
     <p>
-    {{ (env('WEBSITE_NAME')) }} là trang web chuyên cung cấp giá vàng hôm nay mới nhất, cập nhật liên tục từng phút từ các nguồn uy tín trên thị trường Việt Nam. Chúng tôi mang đến cho người dùng thông tin giá vàng SJC, giá vàng 9999, giá vàng thế giới và nhiều loại vàng khác một cách nhanh chóng, chính xác và hoàn toàn miễn phí.
+    {{ (config('services.website_name')) }} là trang web chuyên cung cấp giá vàng hôm nay mới nhất, cập nhật liên tục từng phút từ các nguồn uy tín trên thị trường Việt Nam. Chúng tôi mang đến cho người dùng thông tin giá vàng SJC, giá vàng 9999, giá vàng thế giới và nhiều loại vàng khác một cách nhanh chóng, chính xác và hoàn toàn miễn phí.
     </p>
-    <h3>Tại sao nên chọn {{ (env('WEBSITE_NAME')) }} để tra cứu giá vàng?</h3>
+    <h3>Tại sao nên chọn {{ (config('services.website_name')) }} để tra cứu giá vàng?</h3>
     <ul>
     <li><strong>Cập nhật giá vàng liên tục:</strong> Giá vàng được cập nhật tự động, đảm bảo người dùng luôn nắm bắt được giá vàng mới nhất từng thời điểm trong ngày.</li>
     <li>Đa dạng loại vàng: Trang web cung cấp thông tin về giá vàng SJC, giá vàng 24K, giá vàng 18K, giá vàng PNJ, giá vàng DOJI và nhiều thương hiệu uy tín khác.</li>
     <li>Biểu đồ giá vàng trực quan: Người dùng có thể xem biểu đồ giá vàng theo ngày, tuần, tháng, quý hoặc năm để phân tích xu hướng biến động giá vàng.</li>
     <li>So sánh giá vàng mua vào - bán ra: Bảng giá vàng hiển thị rõ ràng mức giá mua vào, bán ra và chênh lệch, giúp người dùng dễ dàng đưa ra quyết định đầu tư hoặc mua bán vàng.</li>
-    <li>Giao diện thân thiện, dễ sử dụng: {{ (env('WEBSITE_NAME')) }} thiết kế tối ưu cho cả máy tính và điện thoại, giúp bạn tra cứu giá vàng mọi lúc, mọi nơi.</li>
+    <li>Giao diện thân thiện, dễ sử dụng: {{ (config('services.website_name')) }} thiết kế tối ưu cho cả máy tính và điện thoại, giúp bạn tra cứu giá vàng mọi lúc, mọi nơi.</li>
     </ul>
-    <h3>{{ (env('WEBSITE_NAME')) }} phù hợp với ai?</h3>
+    <h3>{{ (config('services.website_name')) }} phù hợp với ai?</h3>
     <p>
-    Trang web {{ (env('WEBSITE_NAME')) }} là công cụ hữu ích cho mọi đối tượng quan tâm đến thị trường vàng như nhà đầu tư, người kinh doanh vàng bạc đá quý, người dân có nhu cầu mua bán vàng tích trữ, hoặc bất kỳ ai muốn cập nhật giá vàng hôm nay một cách nhanh chóng và chính xác.
+    Trang web {{ (config('services.website_name')) }} là công cụ hữu ích cho mọi đối tượng quan tâm đến thị trường vàng như nhà đầu tư, người kinh doanh vàng bạc đá quý, người dân có nhu cầu mua bán vàng tích trữ, hoặc bất kỳ ai muốn cập nhật giá vàng hôm nay một cách nhanh chóng và chính xác.
     </p>
-    <h3>Lợi ích khi sử dụng {{ (env('WEBSITE_NAME')) }}</h3>
+    <h3>Lợi ích khi sử dụng {{ (config('services.website_name')) }}</h3>
     <ul>
     <li>Tiết kiệm thời gian tra cứu giá vàng tại các cửa hàng hoặc trang web khác.</li>
     <li>Thông tin giá vàng SJC, giá vàng 9999 và các loại vàng khác luôn được cập nhật mới nhất.</li>
     <li>Phân tích xu hướng giá vàng dễ dàng nhờ biểu đồ giá vàng trực quan.</li>
     <li>Hỗ trợ quyết định đầu tư, mua bán vàng hiệu quả hơn nhờ dữ liệu chính xác.</li>
     </ul>
-    <h3>Cam kết của {{ (env('WEBSITE_NAME')) }}</h3>
+    <h3>Cam kết của {{ (config('services.website_name')) }}</h3>
     <p>
-    Chúng tôi cam kết mang đến cho người dùng thông tin giá vàng hôm nay chính xác, minh bạch và khách quan nhất. Mọi dữ liệu trên {{ (env('WEBSITE_NAME')) }} đều được tổng hợp từ các nguồn uy tín như SJC, DOJI, PNJ, Bảo Tín Minh Châu và các ngân hàng lớn. Đội ngũ kỹ thuật của chúng tôi luôn nỗ lực cải tiến hệ thống để đảm bảo tốc độ cập nhật nhanh nhất và trải nghiệm người dùng tốt nhất.
+    Chúng tôi cam kết mang đến cho người dùng thông tin giá vàng hôm nay chính xác, minh bạch và khách quan nhất. Mọi dữ liệu trên {{ (config('services.website_name')) }} đều được tổng hợp từ các nguồn uy tín như SJC, DOJI, PNJ, Bảo Tín Minh Châu và các ngân hàng lớn. Đội ngũ kỹ thuật của chúng tôi luôn nỗ lực cải tiến hệ thống để đảm bảo tốc độ cập nhật nhanh nhất và trải nghiệm người dùng tốt nhất.
     </p>
-    <h3>Liên hệ với {{ (env('WEBSITE_NAME')) }}</h3>
+    <h3>Liên hệ với {{ (config('services.website_name')) }}</h3>
     <p>
-    Nếu bạn có bất kỳ thắc mắc, góp ý hoặc cần hỗ trợ về giá vàng hoặc các tính năng của trang web, vui lòng liên hệ với chúng tôi qua email: <a href="mailto:lmn147852369@gmail.com">lmn147852369@gmail.com</a>. {{ (env('WEBSITE_NAME')) }} luôn lắng nghe và sẵn sàng hỗ trợ bạn!
+    Nếu bạn có bất kỳ thắc mắc, góp ý hoặc cần hỗ trợ về giá vàng hoặc các tính năng của trang web, vui lòng liên hệ với chúng tôi qua email: <a href="mailto:lmn147852369@gmail.com">lmn147852369@gmail.com</a>. {{ (config('services.website_name')) }} luôn lắng nghe và sẵn sàng hỗ trợ bạn!
     </p>
     <p>
-    <strong>{{ (env('WEBSITE_NAME')) }}</strong> - Nơi cập nhật giá vàng hôm nay nhanh nhất, chính xác nhất tại Việt Nam!
+    <strong>{{ (config('services.website_name')) }}</strong> - Nơi cập nhật giá vàng hôm nay nhanh nhất, chính xác nhất tại Việt Nam!
     </p>
   </div>
   <script>

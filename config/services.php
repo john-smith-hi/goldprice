@@ -34,5 +34,6 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-
+    'secret_key' => env('SECRET_KEY'),
+    'website_name' => env('WEBSITE_NAME'),
 ];

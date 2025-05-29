@@ -19,8 +19,7 @@ class CheckFKey
     {
         $fkey = $request->session()->get('fkey') ?? $request->input('fkey');
         if (!$fkey) {abort(404);}
-        $secretKey = env('SECRET_KEY');
-        var_dump(env('SECRET_KEY'));
+        $secretKey = config('services.secret_key');
         if ($fkey != $secretKey) {
             abort(403);
         }
