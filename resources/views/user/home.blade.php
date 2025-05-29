@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="mt-2">
-            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="sjc_price_change">0</span></span>
+            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="sjc_price_change">0</span> nghìn đồng</span>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class="mt-2">
-            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="9999_price_change">0</span></span>
+            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="9999_price_change">0</span> nghìn đồng</span>
           </div>
         </div>
       </div>
