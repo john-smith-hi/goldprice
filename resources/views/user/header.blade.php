@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Giá Vàng Hôm Nay Mới Nhất</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <meta name="description" content="Cập nhật giá vàng hôm nay mới nhất, giá vàng SJC, DOJI, PNJ, vàng 9999, vàng 24K, 18K, 14K, bảng giá vàng trực tuyến, biểu đồ giá vàng, phân tích xu hướng giá vàng tại Việt Nam.">
   <meta name="keywords" content="giá vàng, giá vàng hôm nay, giá vàng SJC, giá vàng DOJI, giá vàng PNJ, giá vàng 9999, giá vàng 24K, giá vàng 18K, giá vàng 14K, bảng giá vàng, biểu đồ giá vàng, vàng miếng, vàng nhẫn, vàng trang sức, giá vàng trực tuyến, giá vàng mới nhất, giá vàng Việt Nam">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -44,6 +43,7 @@
     footer a:hover { text-decoration: underline; }
     footer .copy { text-align: center; margin-top: 30px; font-size: 0.85em; padding-bottom: 20px; }
   </style>
+  <script src="{{ asset('js/npm/chart.js') }}"></script>
 </head>
 <body>
   @include('user.modal_box.feedback')

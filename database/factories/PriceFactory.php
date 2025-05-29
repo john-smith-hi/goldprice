@@ -22,7 +22,7 @@ class PriceFactory extends Factory
             // Lấy giá trị price_out lớn hơn price_in từ 100-500
             'price_out' => function (array $attributes) {
                 $priceIn = $attributes['price_in'];
-                return $priceIn + $this->faker->numberBetween(100, 500);
+                return $priceIn + $this->faker->numberBetween(100000, 500000);
             },
             'type' => $this->faker->numberBetween(1, 20),
             'url' => '',

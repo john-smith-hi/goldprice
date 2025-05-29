@@ -8,7 +8,7 @@
       <div class="card text-center border-warning shadow-lg">
         <div class="card-header bg-warning text-dark fw-bold fs-5">
           Giá Vàng SJC
-          <span class="small text-muted" style="font-size: 0.85em;">&nbsp;nghìn đồng/chỉ</span>
+          <span class="small text-muted" style="font-size: 0.85em;">&nbsp;nghìn/chỉ</span>
         </div>
         <div class="card-body">
           <div class="row mb-2">
@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="mt-2">
-            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="sjc_price_change">0</span> nghìn đồng</span>
+            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="sjc_price_change">0</span> nghìn</span>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
       <div class="card text-center border-info shadow-lg">
         <div class="card-header bg-warning text-dark fw-bold fs-5">
           Giá Vàng 999
-          <span class="small text-muted" style="font-size: 0.85em;">&nbsp;nghìn đồng/chỉ</span>
+          <span class="small text-muted" style="font-size: 0.85em;">&nbsp;nghìn/chỉ</span>
         </div>
         <div class="card-body">
           <div class="row mb-2">
@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class="mt-2">
-            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="9999_price_change">0</span> nghìn đồng</span>
+            <span class="badge bg-secondary fs-6">Chênh lệch: <span id="9999_price_change">0</span> nghìn</span>
           </div>
         </div>
       </div>
@@ -84,61 +84,51 @@
   </div>
   <!-- Biểu đồ -->
   <div class="row g-3">
-    <div class="col-md-6">
-      <div class="chart-box">
+    <div class="col-md-12">
+      <div class="chart-box" style="max-height: 500px;">
       <div class="mb-3 position-relative text-center">
-      <h5 class="mb-1 position-static w-100 text-center">Giá Vàng Trong Nước (SJC)</h5>
-      <div class="text-muted small">VNĐ / chỉ</div>
+      <h5 class="mb-1 position-static w-100 text-center fw-bold text-primary" style="font-size: 1.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Giá Vàng SJC</h5>
       </div>
       <canvas id="chartVN"></canvas>
-    </div>
-    </div>
-    <div class="col-md-6">
-    <div class="chart-box">
-      <div class="mb-3 position-relative text-center">
-      <h5 class="mb-1 position-static w-100 text-center">Giá Vàng Thế Giới</h5>
-      <div class="text-muted small">VNĐ / chỉ</div>
-      </div>
-      <canvas id="chartEn"></canvas>
     </div>
     </div>
   </div>
 
   <div class="timestamp" id="timestamp">Cập nhật lúc: <span id="published_at"></span></div>
   <div class="seo-content mt-5">
-    <h2>Giới thiệu về {{ Str::ucfirst(env('WEBSITE_NAME')) }} - Trang web cập nhật giá vàng uy tín, nhanh chóng và chính xác</h2>
+    <h2>Giới thiệu về {{ (env('WEBSITE_NAME')) }} - Trang web cập nhật giá vàng uy tín, nhanh chóng và chính xác</h2>
     <p>
-    {{ Str::ucfirst(env('WEBSITE_NAME')) }} là trang web chuyên cung cấp giá vàng hôm nay mới nhất, cập nhật liên tục từng phút từ các nguồn uy tín trên thị trường Việt Nam. Chúng tôi mang đến cho người dùng thông tin giá vàng SJC, giá vàng 9999, giá vàng thế giới và nhiều loại vàng khác một cách nhanh chóng, chính xác và hoàn toàn miễn phí.
+    {{ (env('WEBSITE_NAME')) }} là trang web chuyên cung cấp giá vàng hôm nay mới nhất, cập nhật liên tục từng phút từ các nguồn uy tín trên thị trường Việt Nam. Chúng tôi mang đến cho người dùng thông tin giá vàng SJC, giá vàng 9999, giá vàng thế giới và nhiều loại vàng khác một cách nhanh chóng, chính xác và hoàn toàn miễn phí.
     </p>
-    <h3>Tại sao nên chọn {{ Str::ucfirst(env('WEBSITE_NAME')) }} để tra cứu giá vàng?</h3>
+    <h3>Tại sao nên chọn {{ (env('WEBSITE_NAME')) }} để tra cứu giá vàng?</h3>
     <ul>
     <li><strong>Cập nhật giá vàng liên tục:</strong> Giá vàng được cập nhật tự động, đảm bảo người dùng luôn nắm bắt được giá vàng mới nhất từng thời điểm trong ngày.</li>
     <li>Đa dạng loại vàng: Trang web cung cấp thông tin về giá vàng SJC, giá vàng 24K, giá vàng 18K, giá vàng PNJ, giá vàng DOJI và nhiều thương hiệu uy tín khác.</li>
     <li>Biểu đồ giá vàng trực quan: Người dùng có thể xem biểu đồ giá vàng theo ngày, tuần, tháng, quý hoặc năm để phân tích xu hướng biến động giá vàng.</li>
     <li>So sánh giá vàng mua vào - bán ra: Bảng giá vàng hiển thị rõ ràng mức giá mua vào, bán ra và chênh lệch, giúp người dùng dễ dàng đưa ra quyết định đầu tư hoặc mua bán vàng.</li>
-    <li>Giao diện thân thiện, dễ sử dụng: {{ Str::ucfirst(env('WEBSITE_NAME')) }} thiết kế tối ưu cho cả máy tính và điện thoại, giúp bạn tra cứu giá vàng mọi lúc, mọi nơi.</li>
+    <li>Giao diện thân thiện, dễ sử dụng: {{ (env('WEBSITE_NAME')) }} thiết kế tối ưu cho cả máy tính và điện thoại, giúp bạn tra cứu giá vàng mọi lúc, mọi nơi.</li>
     </ul>
-    <h3>{{ Str::ucfirst(env('WEBSITE_NAME')) }} phù hợp với ai?</h3>
+    <h3>{{ (env('WEBSITE_NAME')) }} phù hợp với ai?</h3>
     <p>
-    Trang web {{ Str::ucfirst(env('WEBSITE_NAME')) }} là công cụ hữu ích cho mọi đối tượng quan tâm đến thị trường vàng như nhà đầu tư, người kinh doanh vàng bạc đá quý, người dân có nhu cầu mua bán vàng tích trữ, hoặc bất kỳ ai muốn cập nhật giá vàng hôm nay một cách nhanh chóng và chính xác.
+    Trang web {{ (env('WEBSITE_NAME')) }} là công cụ hữu ích cho mọi đối tượng quan tâm đến thị trường vàng như nhà đầu tư, người kinh doanh vàng bạc đá quý, người dân có nhu cầu mua bán vàng tích trữ, hoặc bất kỳ ai muốn cập nhật giá vàng hôm nay một cách nhanh chóng và chính xác.
     </p>
-    <h3>Lợi ích khi sử dụng {{ Str::ucfirst(env('WEBSITE_NAME')) }}</h3>
+    <h3>Lợi ích khi sử dụng {{ (env('WEBSITE_NAME')) }}</h3>
     <ul>
     <li>Tiết kiệm thời gian tra cứu giá vàng tại các cửa hàng hoặc trang web khác.</li>
     <li>Thông tin giá vàng SJC, giá vàng 9999 và các loại vàng khác luôn được cập nhật mới nhất.</li>
     <li>Phân tích xu hướng giá vàng dễ dàng nhờ biểu đồ giá vàng trực quan.</li>
     <li>Hỗ trợ quyết định đầu tư, mua bán vàng hiệu quả hơn nhờ dữ liệu chính xác.</li>
     </ul>
-    <h3>Cam kết của {{ Str::ucfirst(env('WEBSITE_NAME')) }}</h3>
+    <h3>Cam kết của {{ (env('WEBSITE_NAME')) }}</h3>
     <p>
-    Chúng tôi cam kết mang đến cho người dùng thông tin giá vàng hôm nay chính xác, minh bạch và khách quan nhất. Mọi dữ liệu trên {{ Str::ucfirst(env('WEBSITE_NAME')) }} đều được tổng hợp từ các nguồn uy tín như SJC, DOJI, PNJ, Bảo Tín Minh Châu và các ngân hàng lớn. Đội ngũ kỹ thuật của chúng tôi luôn nỗ lực cải tiến hệ thống để đảm bảo tốc độ cập nhật nhanh nhất và trải nghiệm người dùng tốt nhất.
+    Chúng tôi cam kết mang đến cho người dùng thông tin giá vàng hôm nay chính xác, minh bạch và khách quan nhất. Mọi dữ liệu trên {{ (env('WEBSITE_NAME')) }} đều được tổng hợp từ các nguồn uy tín như SJC, DOJI, PNJ, Bảo Tín Minh Châu và các ngân hàng lớn. Đội ngũ kỹ thuật của chúng tôi luôn nỗ lực cải tiến hệ thống để đảm bảo tốc độ cập nhật nhanh nhất và trải nghiệm người dùng tốt nhất.
     </p>
-    <h3>Liên hệ với {{ Str::ucfirst(env('WEBSITE_NAME')) }}</h3>
+    <h3>Liên hệ với {{ (env('WEBSITE_NAME')) }}</h3>
     <p>
-    Nếu bạn có bất kỳ thắc mắc, góp ý hoặc cần hỗ trợ về giá vàng hoặc các tính năng của trang web, vui lòng liên hệ với chúng tôi qua email: <a href="mailto:lmn147852369@gmail.com">lmn147852369@gmail.com</a>. {{ Str::ucfirst(env('WEBSITE_NAME')) }} luôn lắng nghe và sẵn sàng hỗ trợ bạn!
+    Nếu bạn có bất kỳ thắc mắc, góp ý hoặc cần hỗ trợ về giá vàng hoặc các tính năng của trang web, vui lòng liên hệ với chúng tôi qua email: <a href="mailto:lmn147852369@gmail.com">lmn147852369@gmail.com</a>. {{ (env('WEBSITE_NAME')) }} luôn lắng nghe và sẵn sàng hỗ trợ bạn!
     </p>
     <p>
-    <strong>{{ Str::ucfirst(env('WEBSITE_NAME')) }}</strong> - Nơi cập nhật giá vàng hôm nay nhanh nhất, chính xác nhất tại Việt Nam!
+    <strong>{{ (env('WEBSITE_NAME')) }}</strong> - Nơi cập nhật giá vàng hôm nay nhanh nhất, chính xác nhất tại Việt Nam!
     </p>
   </div>
   <script>
@@ -248,33 +238,93 @@
                     d.getFullYear();
             });
             }
-            const sjcData = sorted.map(item => item.price_out);
+            const sjcDataOut = sorted.map(item => item.price_out);
+            const sjcDataIn = sorted.map(item => item.price_in);
+            
+            const minY = Math.ceil((Math.min(...sjcDataIn) - 2000000) / 1000000) * 1000000;
+            const maxY = Math.ceil((Math.max(...sjcDataOut) + 3000000) / 1000000) * 1000000;
 
             // Xóa chart cũ nếu có
             if(window.chartVNInstance) window.chartVNInstance.destroy();
             window.chartVNInstance = new Chart(document.getElementById('chartVN'), {
-            type: 'line',
-            data: {
-                labels,
-                datasets: [{
-                label: 'Giá SJC (VNĐ)',
-                data: sjcData,
-                borderColor: 'gold',
-                backgroundColor: 'rgba(255, 215, 0, 0.2)',
-                tension: 0.4,
-                fill: true
-                }]
-            },
-            options: {
-                plugins: { legend: { display: false } },
-                scales: {
-                y: {
-                    ticks: {
-                    callback: value => value.toLocaleString('vi-VN')
-                    }
-                }
-                }
-            }
+              type: 'line',
+              data: {
+                  labels,
+                  datasets: [
+                      {
+                          label: 'Giá bán ra',
+                          data: sjcDataOut,
+                          borderColor: '#dc3545',
+                          backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                          tension: 0.4,
+                          fill: false
+                      },
+                      {
+                          label: 'Giá mua vào',
+                          data: sjcDataIn,
+                          borderColor: '#198754',
+                          backgroundColor: 'rgba(25, 135, 84, 0.1)',
+                          tension: 0.4,
+                          fill: false
+                      }
+                  ]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  layout: {
+                      padding: {
+                          top: 0,
+                          bottom: 50,
+                          left: 0,
+                          right: 0
+                      }
+                  },
+                  plugins: {
+                      legend: {
+                          display: true,
+                          position: 'top',
+                          labels: {
+                              usePointStyle: true,
+                              padding: 20
+                          }
+                      },
+                      tooltip: {
+                          enabled: true,
+                          callbacks: {
+                              label: (context) => {
+                                  const value = context.raw;
+                                  return context.dataset.label + ': ' + value.toLocaleString('vi-VN') + ' VNĐ';
+                              }
+                          }
+                      }
+                  },
+                  scales: {
+                      y: {
+                          display: true,
+                          min: minY,
+                          max: maxY,
+                          ticks: {
+                              callback: (value) => value.toLocaleString('vi-VN') + ' ₫'
+                          }
+                      },
+                      x: {
+                          grid: {
+                              display: false
+                          }
+                      }
+                  },
+                  elements: {
+                      point: {
+                          radius: 2,
+                          hoverRadius: 4
+                      },
+                      line: {
+                          tension: 0.2,
+                          borderWidth: 2
+                      }
+                  }
+              }
             });
         }
         });
