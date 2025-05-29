@@ -71,14 +71,14 @@
     </div>
     <div class="col-md-3">
       <label for="fromDate" class="form-label mb-1">Từ ngày</label>
-      <input type="text" id="fromDate" name="from_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10" disabled>
+      <input type="text" id="fromDate" name="from_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10">
     </div>
     <div class="col-md-3">
       <label for="toDate" class="form-label mb-1">Đến ngày</label>
-      <input type="text" id="toDate" name="to_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10" disabled>
+      <input type="text" id="toDate" name="to_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10">
     </div>
     <div class="col-md-3">
-      <button type="submit" class="btn btn-primary w-100">Tìm kiếm</button>
+      <button type="submit" class="btn btn-primary w-100" onclick="UpdateChartVn();">Tìm kiếm</button>
     </div>
     </form>
   </div>
@@ -143,14 +143,21 @@
 
     [fromDate, toDate].forEach(input => {
         input.addEventListener('input', function() {
-        let v = this.value.replace(/[^0-9]/g, '');
-        if (v.length > 2 && v.length <= 4) v = v.slice(0,2) + '/' + v.slice(2);
-        else if (v.length > 4) v = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4,8);
-        this.value = v;
-        if (fromDate.value.length === 10 && toDate.value.length === 10) {
+            let v = this.value.replace(/[^0-9]/g, '');
+            if (v.length > 2 && v.length <= 4) v = v.slice(0,2) + '/' + v.slice(2);
+            else if (v.length > 4) v = v.slice(0,2) + '/' + v.slice(2,4) + '/' + v.slice(4,8);
+            this.value = v;
+            if (fromDate.value.length === 10 && toDate.value.length === 10) {
+                timeFilter.value = 'custom';
+                setDateInputState();
+            }
+        });
+
+        // Thêm sự kiện click
+        input.addEventListener('click', function() {
             timeFilter.value = 'custom';
             setDateInputState();
-        }
+            this.focus();
         });
     });
     fromDate.addEventListener('input', function() {
@@ -331,14 +338,9 @@
     }      
 
     function setDateInputState() {
-        if (timeFilter.value === 'custom') {
-        fromDate.disabled = false;
-        toDate.disabled = false;
-        } else {
-        fromDate.value = '';
-        toDate.value = '';
-        fromDate.disabled = true;
-        toDate.disabled = true;
+        if (timeFilter.value !== 'custom') {
+            fromDate.value = '';
+            toDate.value = '';
         }
     }
 </script>
