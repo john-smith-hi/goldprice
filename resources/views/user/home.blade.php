@@ -60,7 +60,7 @@
     <form id="filterForm" class="row g-2 align-items-end">
     <div class="col-md-3">
       <label for="timeFilter" class="form-label mb-1">Lọc theo</label>
-      <select id="timeFilter" name="time_filter" class="form-select" onchange="UpdateChartVn();">
+      <select id="timeFilter" name="time_filter" class="form-select" onchange="UpdateChart();">
       <option value="day">Ngày</option>
       <option value="week">Tuần</option>
       <option value="month">Tháng</option>
@@ -78,7 +78,7 @@
       <input type="text" id="toDate" name="to_date" class="form-control" placeholder="dd/mm/yyyy" maxlength="10">
     </div>
     <div class="col-md-3">
-      <button type="submit" class="btn btn-primary w-100" onclick="UpdateChartVn();">Tìm kiếm</button>
+      <button type="submit" class="btn btn-primary w-100" onclick="UpdateChart();">Tìm kiếm</button>
     </div>
     </form>
   </div>
@@ -134,7 +134,7 @@
   <script>
     UpdateSJCLastest();
     UpdateGold9999Lastest();
-    UpdateChartVn();   
+    UpdateChart();   
     // Xử lý logic bộ lọc
     const timeFilter = document.getElementById('timeFilter');
     const fromDate = document.getElementById('fromDate');
@@ -178,23 +178,23 @@
     });
     // End Modal phản hồi   
     function UpdateSJCLastest(){
-    fetch('/api/gold_price?time_filter=lastest&type='+MAIN_SJC_TYPE_GOLD_VN_ID)
+      fetch('/api/gold_price?time_filter=lastest&type='+MAIN_SJC_TYPE_GOLD_VN_ID)
         .then(res => res.json())
         .then(json => {
-        if (json.success && json.data && json.data.length > 0) {
-            const sjc = json.data.find(item => item.type == MAIN_SJC_TYPE_GOLD_VN_ID);
-            if (sjc) {
-              const priceIn = sjc.price_in;
-              const priceOut = sjc.price_out;
-              document.getElementById('sjc_price_in').innerText = Math.floor(priceIn / 1000).toLocaleString('vi-VN');
-              document.getElementById('sjc_price_out').innerText = Math.floor(priceOut / 1000).toLocaleString('vi-VN');
-              // Tính chênh lệch và cập nhật vào sjc_price_change
-              const priceChange = Math.floor((priceOut - priceIn) / 1000).toLocaleString('vi-VN');
-              document.getElementById('sjc_price_change').innerText = priceChange.toLocaleString('vi-VN');
-              // Cập nhật thời gian published_at
-              if (sjc.published_at) {document.getElementById('published_at').innerText = sjc.published_at;}
-            }
-        }
+          if (json.success && json.data && json.data.length > 0) {
+              const sjc = json.data.find(item => item.type == MAIN_SJC_TYPE_GOLD_VN_ID);
+              if (sjc) {
+                const priceIn = sjc.price_in;
+                const priceOut = sjc.price_out;
+                document.getElementById('sjc_price_in').innerText = Math.floor(priceIn / 1000).toLocaleString('vi-VN');
+                document.getElementById('sjc_price_out').innerText = Math.floor(priceOut / 1000).toLocaleString('vi-VN');
+                // Tính chênh lệch và cập nhật vào sjc_price_change
+                const priceChange = Math.floor((priceOut - priceIn) / 1000).toLocaleString('vi-VN');
+                document.getElementById('sjc_price_change').innerText = priceChange.toLocaleString('vi-VN');
+                // Cập nhật thời gian published_at
+                if (sjc.published_at) {document.getElementById('published_at').innerText = sjc.published_at;}
+              }
+          }
         });
     }
 
@@ -219,7 +219,7 @@
     }
 
     // Cập nhật biểu đồ
-    function UpdateChartVn(){
+    function UpdateChart(){
         let timeFilterValue = document.getElementById("timeFilter").value;
         let fromDateValue = document.getElementById("fromDate").value;
         let toDate = document.getElementById("toDate").value;
@@ -247,9 +247,14 @@
             }
             const sjcDataOut = sorted.map(item => item.price_out);
             const sjcDataIn = sorted.map(item => item.price_in);
-            const worldData = sorted.map(item => item.price_world);            
-            const minY = Math.ceil((Math.min(...sjcDataIn, ...worldData) - 2000000) / 1000000) * 1000000;
-            const maxY = Math.ceil((Math.max(...sjcDataOut, ...worldData) + 1000000) / 1000000) * 1000000;
+            const worldData = sorted.map(item => item.price_world);
+            
+            const validSjcIn = sjcDataIn.filter(v => typeof v === 'number');
+            const validSjcOut = sjcDataOut.filter(v => typeof v === 'number');
+            const validWorld = worldData.filter(v => typeof v === 'number');
+
+            const minY = Math.ceil((Math.min(...validSjcIn, ...validWorld) - 2000000) / 1000000) * 1000000;
+            const maxY = Math.ceil((Math.max(...validSjcOut, ...validWorld) + 1000000) / 1000000) * 1000000;
 
             // Xóa chart cũ nếu có
             if(window.chartVNInstance) window.chartVNInstance.destroy();
