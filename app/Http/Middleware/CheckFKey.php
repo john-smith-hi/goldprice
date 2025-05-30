@@ -17,16 +17,17 @@ class CheckFKey
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $fkey = $request->session()->get('fkey') ?? $request->input('fkey');
-        if (!$fkey) {abort(404);}
+        $fkey = $request->cookie('fkey') ?? $request->input('fkey');
+        if (!$fkey) { abort(404); }
         $secretKey = config('services.secret_key');
         if ($fkey != $secretKey) {
             abort(403);
         }
 
-        // Store fkey in session before proceeding
-        $request->session()->put('fkey', $fkey);
-        
+        // Lưu vào cookie nếu chưa có
+        if (!$request->cookie('fkey')) {
+            cookie()->queue('fkey', $fkey, 525600); // lưu 1 năm (tính theo phút)
+        }
         return $next($request);
     }
 } 
