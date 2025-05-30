@@ -10,6 +10,7 @@ class AdminDatabaseController extends Controller
 {
     public function index()
     {
+        echo date('Y-m-d H:i:s');
         return view('admin.database');
     }
 
