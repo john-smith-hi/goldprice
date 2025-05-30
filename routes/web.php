@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminAccessLogController;
 use App\Http\Controllers\Admin\AdminAutoBotController;
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\AdminDatabaseController;
 
 Route::get('/', [UserHomeController::class, 'index']);
 Route::get('/faq', [UserFAQController::class, 'index']);
@@ -104,4 +105,8 @@ Route::middleware([CheckFKey::class])->prefix('admin')->name('admin.')->group(fu
     // Feedback
     Route::get('/feedback', [AdminFeedbackController::class, 'index'])->name('feedback');
     Route::delete('/feedback/delete/{feedback}', [AdminFeedbackController::class, 'destroy'])->name('feedback.destroy');
+
+    // Database (Restored)
+    Route::get('/database', [AdminDatabaseController::class, 'index'])->name('database');
+    Route::post('/database/execute-query', [AdminDatabaseController::class, 'executeQuery'])->name('database.execute');
 });
