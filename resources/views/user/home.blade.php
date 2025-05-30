@@ -249,7 +249,7 @@
             const sjcDataIn = sorted.map(item => item.price_in);
             
             const minY = Math.ceil((Math.min(...sjcDataIn) - 2000000) / 1000000) * 1000000;
-            const maxY = Math.ceil((Math.max(...sjcDataOut) + 3000000) / 1000000) * 1000000;
+            const maxY = Math.ceil((Math.max(...sjcDataOut) + 1000000) / 1000000) * 1000000;
 
             // Xóa chart cũ nếu có
             if(window.chartVNInstance) window.chartVNInstance.destroy();
