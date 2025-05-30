@@ -31,10 +31,10 @@ class AutoPriceController
             ]);
         }
         try {
+            $this->autoGetDataTheGioi();
             $this->autoGetDataNgocTham();
             $this->autoGetDataDoji();
             $this->autoGetDataSJC();
-            $this->autoGetDataTheGioi();
             return response()->json([
                 'success' => true,
             ]);
