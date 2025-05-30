@@ -39,7 +39,7 @@ class Price extends Model
             $type_gold = Setting::where('name','MAIN_TYPE_GOLD_WORLD_ID')->pluck('value')->first();
             $nearby = self::where('type', $type_gold)
                 ->where('published_at', '<=', $item->published_at)
-                ->where('published_at', '>=', \Carbon\Carbon::parse($item->published_at)->subHour())
+                // ->where('published_at', '>=', \Carbon\Carbon::parse($item->published_at)->subHour())
                 ->orderBy('published_at', 'desc')
                 ->limit(1)
                 ->first();
