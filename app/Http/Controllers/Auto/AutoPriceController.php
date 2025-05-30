@@ -31,6 +31,7 @@ class AutoPriceController
             ]);
         }
         try {
+            // phải lấy giá vàng thế giới trước
             $this->autoGetDataTheGioi();
             $this->autoGetDataNgocTham();
             $this->autoGetDataDoji();
