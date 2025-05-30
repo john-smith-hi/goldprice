@@ -113,17 +113,18 @@ class Price extends Model
                 break;
         }
         $data = $query->orderBy('published_at', 'asc')->get();
-
         $sampled = collect();
         $count = $data->count();
-
         if ($count > $take) {
-            $step = floor($count / $take);
-            for ($i = 0; $i < $take; $i++) {
+            $sampled->push($data[0]); // giữ phần tử đầu
+            $middleTake = $take - 2; // trừ đầu và cuối
+            $step = floor(($count - 2) / $middleTake);
+            for ($i = 1; $i <= $middleTake; $i++) {
                 $sampled->push($data[$i * $step]);
             }
+            $sampled->push($data[$count - 1]); // giữ phần tử cuối
         } else {
-            $sampled = $data; // ít hơn 10 thì lấy tất
+            $sampled = $data; // ít hơn thì lấy tất
         }
 
         return ($time_filter != "time_filter") ? $this->AddPriceWorld($sampled) : $sampled;
