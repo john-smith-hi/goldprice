@@ -54,6 +54,21 @@
         </div>
       </div>
     </div>
+    <div class="col-md-5 mb-3">
+      <div class="card text-center border-primary shadow-lg">
+        <div class="card-header bg-warning text-dark fw-bold fs-5">
+          Giá Vàng Thế giới
+          <span class="small text-muted" style="font-size: 0.85em;">&nbsp;nghìn/chỉ</span>
+        </div>
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <span id="world_price" class="display-5 fw-bold text-primary">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Bộ lọc biểu đồ -->
   <div class="chart-box mb-3">
@@ -134,6 +149,7 @@
   <script>
     UpdateSJCLastest();
     UpdateGold9999Lastest();
+    UpdateWorldGoldLastest();
     UpdateChart();   
     // Xử lý logic bộ lọc
     const timeFilter = document.getElementById('timeFilter');
@@ -224,6 +240,21 @@
                 const priceChange = Math.floor((priceOut - priceIn) / 1000).toLocaleString('vi-VN');
                 document.getElementById('9999_price_change').innerText = priceChange.toLocaleString('vi-VN');
             }
+            }
+        });
+    }
+
+    // Cập nhật Giá Vàng Thế giới
+    function UpdateWorldGoldLastest(){
+        fetch('/api/gold_price?time_filter=lastest&type='+MAIN_TYPE_GOLD_WORLD_ID)
+        .then(res => res.json())
+        .then(json => {
+            if (json.success && json.data && json.data.length > 0) {
+                const worldGold = json.data.find(item => item.type == MAIN_TYPE_GOLD_WORLD_ID);
+                if (worldGold) {
+                    const price = worldGold.price_out;
+                    document.getElementById('world_price').innerText = price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                }
             }
         });
     }

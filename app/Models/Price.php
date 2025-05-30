@@ -60,6 +60,7 @@ class Price extends Model
 
     public function getGoldPrice($time_filter, $type=0, $from_date = null, $to_date = null)
     {
+        $type_gold_world = Setting::where('name', 'MAIN_TYPE_GOLD_WORLD_ID')->pluck('value')->first();
         if(empty($type) || $type===0) $type = Setting::where('name', 'MAIN_SJC_TYPE_GOLD_VN_ID')->pluck('value')->first();
         $query = self::select('price_in', 'price_out', 'type', 'published_at')->where('type', $type);
         if ($time_filter == "custom" && (empty($from_date) || empty($to_date))) {
@@ -127,6 +128,6 @@ class Price extends Model
             $sampled = $data; // ít hơn thì lấy tất
         }
 
-        return ($time_filter != "time_filter") ? $this->AddPriceWorld($sampled) : $sampled;
+        return ($time_filter != "lastest" || $type == $type_gold_world) ? $this->AddPriceWorld($sampled) : $sampled;
     }
 }
