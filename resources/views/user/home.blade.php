@@ -192,7 +192,17 @@
                 const priceChange = Math.floor((priceOut - priceIn) / 1000).toLocaleString('vi-VN');
                 document.getElementById('sjc_price_change').innerText = priceChange.toLocaleString('vi-VN');
                 // Cập nhật thời gian published_at
-                if (sjc.published_at) {document.getElementById('published_at').innerText = sjc.published_at;}
+                if (sjc.published_at) {
+                    const date = new Date(sjc.published_at);
+                    const hours = date.getHours().toString().padStart(2, '0');
+                    const minutes = date.getMinutes().toString().padStart(2, '0');
+                    const seconds = date.getSeconds().toString().padStart(2, '0');
+                    const day = date.getDate().toString().padStart(2, '0');
+                    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-indexed
+                    const year = date.getFullYear();
+                    const formattedDate = `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
+                    document.getElementById('published_at').innerText = formattedDate;
+                }
               }
           }
         });
