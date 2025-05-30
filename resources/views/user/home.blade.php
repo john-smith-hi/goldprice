@@ -252,8 +252,8 @@
             if (json.success && json.data && json.data.length > 0) {
                 const worldGold = json.data.find(item => item.type == MAIN_TYPE_GOLD_WORLD_ID);
                 if (worldGold) {
-                    const price = worldGold.price_out;
-                    document.getElementById('world_price').innerText = price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    const price = worldGold.price_world;
+                    document.getElementById('world_price').innerText = priceChange.toLocaleString('vi-VN');
                 }
             }
         });
