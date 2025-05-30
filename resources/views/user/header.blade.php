@@ -48,9 +48,4 @@
 <body>
   @include('user.modal_box.feedback')
   @include('user.navbar')
-  <script>
-    const MAIN_SJC_TYPE_GOLD_VN_ID = "{{ $MAIN_SJC_TYPE_GOLD_VN_ID }}";
-    const MAIN_9999_TYPE_GOLD_VN_ID = "{{ $MAIN_9999_TYPE_GOLD_VN_ID }}";
-    const MAIN_TYPE_GOLD_WORLD_ID = "{{ $MAIN_TYPE_GOLD_WORLD_ID }}";
-  </script>
   <div class="container">

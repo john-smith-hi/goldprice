@@ -1,5 +1,10 @@
 @extends('user.main')
 @section('content')
+  <script>
+    const MAIN_SJC_TYPE_GOLD_VN_ID = "{{ $MAIN_SJC_TYPE_GOLD_VN_ID }}";
+    const MAIN_9999_TYPE_GOLD_VN_ID = "{{ $MAIN_9999_TYPE_GOLD_VN_ID }}";
+    const MAIN_TYPE_GOLD_WORLD_ID = "{{ $MAIN_TYPE_GOLD_WORLD_ID }}";
+  </script>
   <!-- Tiêu đề H1 -->
   <h1 class="mb-4 text-center">Giá Vàng Mới Nhất Hôm Nay</h1>
   <!-- Bảng giá -->
