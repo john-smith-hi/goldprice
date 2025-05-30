@@ -73,8 +73,12 @@ class AutoPriceController
         return false; 
     }
 
-    private function PriceInput($priceText, $multiple=1){
+    private function PriceInputVND($priceText, $multiple=1){
         return (integer)str_replace(".", "", $priceText) * $multiple;
+    }
+
+    private function PriceInputUSD($priceText, $multiple=1){
+        return (double)str_replace(",", "", $priceText) * $multiple;
     }
     
     private function autoGetDataNgocTham(){
@@ -119,8 +123,8 @@ class AutoPriceController
                     }
                     $tds = $tr->getElementsByTagName('td');
                     if ($tds->length == 2) {
-                        $price_in = $this->PriceInput($tds->item(0)->textContent, 100);
-                        $price_out = $this->PriceInput($tds->item(1)->textContent, 100);
+                        $price_in = $this->PriceInputVND($tds->item(0)->textContent, 100);
+                        $price_out = $this->PriceInputVND($tds->item(1)->textContent, 100);
                         $data_price = [];
                         $data_price['price_in'] = $price_in;
                         $data_price['price_out'] = $price_out;
@@ -175,8 +179,8 @@ class AutoPriceController
                             Notification::create(['text' => $data_link.' có thay đổi về loại vàng']);
                             break 2;
                         }
-                        $price_in = $this->PriceInput($tds->item(1)->textContent, 100);
-                        $price_out = $this->PriceInput($tds->item(2)->textContent, 100);
+                        $price_in = $this->PriceInputVND($tds->item(1)->textContent, 100);
+                        $price_out = $this->PriceInputVND($tds->item(2)->textContent, 100);
                         $data_price = [];
                         $data_price['price_in'] = $price_in;
                         $data_price['price_out'] = $price_out;
@@ -231,8 +235,8 @@ class AutoPriceController
                             Notification::create(['text' => $data_link.' có thay đổi về loại vàng']);
                             break 2;
                         }
-                        $price_in = $this->PriceInput($tds->item(1)->textContent, 100);
-                        $price_out = $this->PriceInput($tds->item(2)->textContent, 100);
+                        $price_in = $this->PriceInputVND($tds->item(1)->textContent, 100);
+                        $price_out = $this->PriceInputVND($tds->item(2)->textContent, 100);
                         $data_price = [];
                         $data_price['price_in'] = $price_in;
                         $data_price['price_out'] = $price_out;
@@ -251,6 +255,35 @@ class AutoPriceController
     }
 
     private function autoGetDataTheGioi(){
-        
+        $companies_id = Company::where('name', 'like', '%Thế giới%')->pluck('id')->first();
+        if($this->checkGotData($companies_id, self::GET_EVERY_MINUTE)){
+            Notification::create(['text' => 'Vàng thế giới đã được cập nhật trong phạm vi '.self::GET_EVERY_MINUTE.' phút gần đây']);
+            return false;
+        }
+        $data_link = self::LINK_DATA_THEGIOI;
+        // Giá vàng thế giới chỉ có 1 type gold
+        $typeGoldId = TypeGold::where('companies_id', $companies_id)->pluck('id')->first();
+        $dom = $this->getDomHtml($data_link);
+        // Lấy tất cả các span có class "crypto-price"
+        $spans = $dom->getElementsByTagName('span');
+        $priceUSD = [];
+        foreach ($spans as $span) {
+            if ($span->hasAttribute('class') && strpos($span->getAttribute('class'), 'crypto-price') !== false) {
+            $priceUSD[] = trim($span->textContent);
+            }
+        }
+        if (empty($priceUSD)) {
+            Notification::create(['text' => $data_link.' không tìm thấy span class crypto-price']);
+            return;
+        }
+        $priceUSD = $this->PriceInputUSD($priceUSD[0]);
+        Price::create([
+            'price_in' => 0, // giá vàng thế giới chỉ có 1 giá
+            'price_out' => $priceUSD,
+            'type' => $typeGoldId,
+            'url' => $data_link,
+            'published_at' => date('Y-m-d H:i:s'),
+        ]);
+
     }
 }

@@ -18,13 +18,20 @@ class PriceFactory extends Factory
     public function definition(): array
     {
         return [
-            'price_in' => $this->faker->numberBetween(5000000, 9000000),
-            // Lấy giá trị price_out lớn hơn price_in từ 100-500
+            'type' => $this->faker->numberBetween(1, 24),
+            'price_in' => function (array $attributes) {
+                if (isset($attributes['type']) && $attributes['type'] == 24) {
+                    return 0;
+                }
+                return $this->faker->numberBetween(5000000, 9000000);
+            },
             'price_out' => function (array $attributes) {
+                if (isset($attributes['type']) && $attributes['type'] == 24) {
+                    return $this->faker->numberBetween(3000, 4000);
+                }
                 $priceIn = $attributes['price_in'];
                 return $priceIn + $this->faker->numberBetween(100000, 500000);
             },
-            'type' => $this->faker->numberBetween(1, 20),
             'url' => '',
             'published_at' => $this->faker->dateTimeBetween('first day of January this year', 'now')->format('Y-m-d H:i:s'),
         ];

@@ -12,6 +12,7 @@ class Price extends Model
     use HasFactory;
 
     protected $table = 'prices';
+    const OUNCE_TO_LUONG_VANG = 0.829426027;
 
     protected $fillable = [
         'price_in',
@@ -24,6 +25,32 @@ class Price extends Model
     public function typeGold()
     {
         return $this->belongsTo(TypeGold::class, 'type');
+    }
+
+    private function USDoz_to_VNDchi($priceUSDoz){
+        $latestCurrency = (new Currency())->Lastest();
+        $number_target = is_object($latestCurrency) ? $latestCurrency->number_target : $latestCurrency;
+        return $priceUSDoz/self::OUNCE_TO_LUONG_VANG/10*$number_target;
+    }
+
+    private function AddPriceWorld($sampled){
+        // Duyệt qua mỗi dòng của $sampled và thêm 'price_world'
+        $sampled = $sampled->map(function ($item) {
+            $type_gold = Setting::where('name','MAIN_TYPE_GOLD_WORLD_ID')->pluck('value')->first();
+            $nearby = self::where('type', $type_gold)
+                ->where('published_at', '<=', $item->published_at)
+                ->where('published_at', '>=', \Carbon\Carbon::parse($item->published_at)->subHour())
+                ->orderBy('published_at', 'desc')
+                ->limit(1)
+                ->first();
+            if ($nearby) {
+                $item->price_world = ceil($this->USDoz_to_VNDchi($nearby->price_out));
+            } else {
+                $item->price_world = null;
+            }
+            return $item;
+        });
+        return $sampled;
     }
 
     public function getGoldPrice($time_filter, $type=0, $from_date = null, $to_date = null)
@@ -94,6 +121,6 @@ class Price extends Model
             $sampled = $data; // ít hơn 10 thì lấy tất
         }
 
-        return $sampled;
+        return ($time_filter != "time_filter") ? $this->AddPriceWorld($sampled) : $sampled;
     }
 }

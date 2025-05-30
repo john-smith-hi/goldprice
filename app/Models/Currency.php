@@ -21,4 +21,15 @@ class Currency extends Model
         'datetime',
         'time',
     ];
+
+    public function Lastest($source="USD", $target="VND"){
+        $result = Currency::where('source', $source)
+            ->where('target', $target)
+            ->orderByDesc('datetime')
+            ->limit(1)
+            ->get(['number_source', 'number_target'])
+            ->first();
+
+        return $result ?? 0;
+    }
 }

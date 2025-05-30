@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         Company::create(['name' => 'DOJI']);
         Company::create(['name' => 'PNJ']);
         Company::create(['name' => 'Ngọc Thẩm']);
+        Company::create(['name' => 'Thế giới']);
 
         // SJC : 12 loại
         TypeGold::create(['companies_id' => 1 , 'name_vn' => 'Vàng SJC 1L, 10L, 1KG']);
@@ -54,12 +55,16 @@ class DatabaseSeeder extends Seeder
         TypeGold::create(['companies_id' => 4 , 'name_vn' => 'Vàng 18K (750)']);
         TypeGold::create(['companies_id' => 4 , 'name_vn' => 'Vàng trắng Au750']);
 
+        // Thế giới
+        TypeGold::create(['companies_id' => 5 , 'name_vn' => 'Vàng 24K', 'type' => 1]);
+
         Setting::create(['name' => 'AUTO_UPDATE_GOLD_PRICE', 'type_value' => 'integer', 'value' => 1, 'note' => 'Tự động cập nhật giá vàng 0/1 : Tắt/Bật']);
         Setting::create(['name' => 'AUTO_UPDATE_GOLD_CURRENCY', 'type_value' => 'integer', 'value' => 1, 'note' => 'Tự động cập nhật giá vàng 0/1 : Tắt/Bật']);
         Setting::create(['name' => 'MAIN_SJC_TYPE_GOLD_VN_ID', 'type_value' => 'integer', 'value' => 1, 'note' => 'Giá trị chính để hiển thị giá vàng SJC Việt Nam']);
         Setting::create(['name' => 'MAIN_9999_TYPE_GOLD_VN_ID', 'type_value' => 'integer', 'value' => 4, 'note' => 'Giá trị chính để hiển thị giá vàng 9999 Việt Nam']);
+        Setting::create(['name' => 'MAIN_TYPE_GOLD_WORLD_ID', 'type_value' => 'integer', 'value' => 24, 'note' => 'Giá trị chính để hiển thị giá vàng thế giới']);
 
-        Price::factory()->count(30000)->create();
+        // Price::factory()->count(30000)->create();
         // Setting::factory()->count(10)->create();
         // AccessLog::factory()->count(100)->create();
         // AutoBot::factory()->count(10)->create();

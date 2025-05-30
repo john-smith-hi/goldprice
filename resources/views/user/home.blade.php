@@ -184,15 +184,15 @@
         if (json.success && json.data && json.data.length > 0) {
             const sjc = json.data.find(item => item.type == MAIN_SJC_TYPE_GOLD_VN_ID);
             if (sjc) {
-            const priceIn = sjc.price_in;
-            const priceOut = sjc.price_out;
-            document.getElementById('sjc_price_in').innerText = Math.floor(priceIn / 1000).toLocaleString('vi-VN');
-            document.getElementById('sjc_price_out').innerText = Math.floor(priceOut / 1000).toLocaleString('vi-VN');
-            // Tính chênh lệch và cập nhật vào sjc_price_change
-            const priceChange = Math.floor((priceOut - priceIn) / 1000).toLocaleString('vi-VN');
-            document.getElementById('sjc_price_change').innerText = priceChange.toLocaleString('vi-VN');
-                // Cập nhật thời gian published_at
-                if (sjc.published_at) {document.getElementById('published_at').innerText = sjc.published_at;}
+              const priceIn = sjc.price_in;
+              const priceOut = sjc.price_out;
+              document.getElementById('sjc_price_in').innerText = Math.floor(priceIn / 1000).toLocaleString('vi-VN');
+              document.getElementById('sjc_price_out').innerText = Math.floor(priceOut / 1000).toLocaleString('vi-VN');
+              // Tính chênh lệch và cập nhật vào sjc_price_change
+              const priceChange = Math.floor((priceOut - priceIn) / 1000).toLocaleString('vi-VN');
+              document.getElementById('sjc_price_change').innerText = priceChange.toLocaleString('vi-VN');
+              // Cập nhật thời gian published_at
+              if (sjc.published_at) {document.getElementById('published_at').innerText = sjc.published_at;}
             }
         }
         });
@@ -247,9 +247,9 @@
             }
             const sjcDataOut = sorted.map(item => item.price_out);
             const sjcDataIn = sorted.map(item => item.price_in);
-            
-            const minY = Math.ceil((Math.min(...sjcDataIn) - 2000000) / 1000000) * 1000000;
-            const maxY = Math.ceil((Math.max(...sjcDataOut) + 1000000) / 1000000) * 1000000;
+            const worldData = sorted.map(item => item.price_world);            
+            const minY = Math.ceil((Math.min(...sjcDataIn, ...worldData) - 2000000) / 1000000) * 1000000;
+            const maxY = Math.ceil((Math.max(...sjcDataOut, ...worldData) + 1000000) / 1000000) * 1000000;
 
             // Xóa chart cũ nếu có
             if(window.chartVNInstance) window.chartVNInstance.destroy();
@@ -259,7 +259,7 @@
                   labels,
                   datasets: [
                       {
-                          label: 'Giá bán ra',
+                          label: 'Giá bán ra trong nước',
                           data: sjcDataOut,
                           borderColor: '#dc3545',
                           backgroundColor: 'rgba(220, 53, 69, 0.1)',
@@ -267,13 +267,21 @@
                           fill: false
                       },
                       {
-                          label: 'Giá mua vào',
+                          label: 'Giá mua vào trong nước',
                           data: sjcDataIn,
                           borderColor: '#198754',
                           backgroundColor: 'rgba(25, 135, 84, 0.1)',
                           tension: 0.4,
                           fill: false
-                      }
+                      },
+                        {
+                          label: 'Giá thế giới',
+                          data: worldData,
+                          borderColor: '#007bff',
+                          backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                          tension: 0.4,
+                          fill: false
+                        }
                   ]
               },
               options: {

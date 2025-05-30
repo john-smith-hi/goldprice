@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->integer('price_in');
-            $table->integer('price_out');
+            $table->float('price_in');
+            $table->float('price_out');
             $table->foreignId('type')->constrained('type_gold')->onDelete('cascade');
             $table->string('url', 500);
             $table->timestamp('published_at')->nullable();
