@@ -64,11 +64,11 @@ class DatabaseSeeder extends Seeder
         Setting::create(['name' => 'MAIN_9999_TYPE_GOLD_VN_ID', 'type_value' => 'integer', 'value' => 4, 'note' => 'Giá trị chính để hiển thị giá vàng 9999 Việt Nam']);
         Setting::create(['name' => 'MAIN_TYPE_GOLD_WORLD_ID', 'type_value' => 'integer', 'value' => 24, 'note' => 'Giá trị chính để hiển thị giá vàng thế giới']);
 
-        // Price::factory()->count(30000)->create();
+        Price::factory()->count(30000)->create();
         // Setting::factory()->count(10)->create();
-        // AccessLog::factory()->count(100)->create();
-        // AutoBot::factory()->count(10)->create();
-        // Feedback::factory()->count(10)->create();
-        // BannedIp::factory()->count(10)->create();
+        AccessLog::factory()->count(100)->create();
+        AutoBot::factory()->count(100)->create();
+        Feedback::factory()->count(100)->create();
+        BannedIp::factory()->count(100)->create();
     }
 }

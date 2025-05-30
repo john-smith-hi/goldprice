@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\TypeGold;
 
 class Price extends Model
 {
     /** @use HasFactory<\Database\Factories\PriceFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'prices';
     const OUNCE_TO_LUONG_VANG = 0.829426027;
@@ -20,6 +21,10 @@ class Price extends Model
         'type', // type_gold.id
         'url',
         'published_at',
+    ];
+
+    protected $casts = [
+        'published_at' => 'datetime',
     ];
 
     public function typeGold()

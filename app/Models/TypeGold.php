@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TypeGold extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'type_gold';
 
@@ -18,6 +19,11 @@ class TypeGold extends Model
         'note',
         'type',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'companies_id');
+    }
 
     public function prices()
     {

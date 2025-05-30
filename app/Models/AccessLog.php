@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AccessLog extends Model
 {
     /** @use HasFactory<\Database\Factories\AccessLogFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'access_logs';
 
@@ -20,6 +21,10 @@ class AccessLog extends Model
         'language',
         'url',
         'accessed_at',
+    ];
+
+    protected $casts = [
+        'accessed_at' => 'datetime',
     ];
 
     private static function ip_in_range($ip, $cidr) {
